@@ -1,7 +1,3 @@
-Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL** de cada item. A hierarquia segue a estrutura `grupo > sub-grupo > item` (quando houver mais de um nível).
-
----
-
 # Institucional
 
 ## Estrutura e competências
@@ -44,81 +40,7 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 
 ---
 
-# Acesso à informação
-
-## Relatórios de gestão
-
-| ID | Item | URL |
-|----|------|-----|
-| 5 | Relatório de Gestão - Exercício 2025 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relato%CC%81rio%20de%20Gesta%CC%83o_2025_versa%CC%83o%20interna.pdf |
-| 6 | Relatório de Gestão - Exercício 2024 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2024_vers%C3%A3o%20interna.pdf |
-| 7 | Relatório de Gestão - Exercício 2023 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2023_vers%C3%A3o%20interna.pdf |
-| 8 | Relatório de Gestão - Exercício 2022 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2022.pdf |
-
-## Boletim de pessoal e ofícios
-
-### Consulta ao Boletim de Pessoal
-| ID | Item | URL |
-|----|------|-----|
-| 36 | Boletim de Pessoal | http://www.cgp.ufba.br/formBusca.asp |
-
-## Informações funcionais e financeiras
-
-### Histórico funcional / financeiro
-| ID | Item | URL |
-|----|------|-----|
-| 44 | Histórico Funcional / Financeiro | https://sigrh.ufba.br/sigrh/public/home.jsf |
-
-## Quadro de pessoal
-
-| ID | Item | URL |
-|----|------|-----|
-| 55 | Docentes MS - Vagas Desocupadas | https://prodep.ufba.br/node/1183 |
-| 56 | Docentes MS - Vagas Ocupadas | https://prodep.ufba.br/node/1184 |
-| 57 | Docentes EBTT - Vagas Desocupadas | https://prodep.ufba.br/node/1185 |
-| 58 | Docentes EBTT - Vagas Ocupadas | https://prodep.ufba.br/node/1186 |
-| 67 | Quadro de Referência - Docente | https://prodep.ufba.br/node/1306 |
-| 68 | Quadro de Referência - PCCTAE | https://prodep.ufba.br/node/1307 |
-| 69 | Quantitativo de Cargos | https://sigrh.ufba.br/sigrh/public/abas/quantitativo_cargos_UFBA.jsf |
-
-### Docentes em DE cedidos
-| ID | Item | URL |
-|----|------|-----|
-| 59 | Docentes em DE cedidos | https://sigrh.ufba.br/sigrh/public/abas/form_docentes_DE_cedidos_UFBA.jsf |
-
-## Servidores e funções
-
-| ID | Item | URL |
-|----|------|-----|
-| 63 | Ocupantes de CD, FG e FCC | https://sigrh.ufba.br/sigrh/public/form_busca_ocupantes_cd_fg_fcc_ufba.jsf |
-| 70 | Relação dos Servidores | https://sigrh.ufba.br/sigrh/public/menu_consultas_servidores_ufba.jsf |
-| 75 | Servidores Cedidos | https://sigrh.ufba.br/sigrh/public/menu_consultas_servidores_ufba.jsf |
-
-## Ofícios e publicações oficiais
-
-### Ofícios Circulares
-| ID | Item | URL |
-|----|------|-----|
-| 64 | Ofícios Circulares | https://prodep.ufba.br/node/43 |
-
-## Transparência
-
-### Remuneração dos servidores
-| ID | Item | URL |
-|----|------|-----|
-| 71 | Remuneração dos Servidores | https://portaldatransparencia.gov.br/servidores/consulta?orgaosServidorLotacao=OR26232&ordenarPor=nome&direcao=asc |
-
-## Remuneração e benefícios
-
-### Pagamentos de adicionais e gratificações
-| ID | Item | URL |
-|----|------|-----|
-| 54 | Consultar Pagamento (Adicionais e Gratificações) | (REPETE — ver ID 77) |
-| 77 | Consultar Pagamento (GECC) | https://sigrh.ufba.br/sigrh/public/abas/form_relatorio_adicionais_gratificacoes_ufba.jsf |
-
----
-
-# Concursos e seleções
+# ############################ Concursos
 
 ## Concursos
 
@@ -136,14 +58,14 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 
 ---
 
-# Sistemas e consultas
+# ############################ Sistemas
 
 ## Catálogo de sistemas
 | ID | Item | URL |
 |----|------|-----|
 | 12 | Sistemas Corporativos | https://prodep.ufba.br/catalogodesistemas |
 
-## Sistemas administrativos internos [deve ir para o top-menu como Intranet]
+## Sistemas administrativos internos
 
 | ID | Item | URL |
 |----|------|-----|
@@ -157,7 +79,7 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 
 ---
 
-# Serviços
+# ############################ Serviços
 
 ## Aposentadoria e pensão
 
@@ -165,12 +87,6 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 |----|------|-----|
 | 23 | Aposentadoria | https://prodep.ufba.br/sites/prodep.ufba.br/files/Manual_Aposentadoria.pdf |
 | 65 | Procedimentos para Prova de Vida – Aposentados e Pensionistas | https://prodep.ufba.br/node/1203 |
-
-## Auxílios e benefícios
-
-| ID | Item | URL |
-|----|------|-----|
-| 24 | Concessão de Auxílios e Benefícios | https://prodep.ufba.br/sites/prodep.ufba.br/files/Manual_Auxilios_Beneficios.pdf |
 
 ## Ingresso e posse
 
@@ -186,11 +102,17 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 | 37 | Capacitação | https://capacitar.ufba.br/ |
 | 66 | Progressão Funcional e Outros | https://prodep.ufba.br/node/1123 |
 
+## Formulários e requerimentos
+
+### Formulários da PRODEP
+| ID | Item | URL |
+|----|------|-----|
+| 43 | Formulários | https://prodep.ufba.br/formularios |
+
 ## Processos e documentos
 
 | ID | Item | URL |
 |----|------|-----|
-| 43 | Formulários | https://prodep.ufba.br/formularios |
 | 46 | Procedimentos Operacionais (PEN) | https://supad.ufba.br/manual-procedimentos?qt-manual_de_procedimentos=2#qt-manual_de_procedimentos |
 
 ## Guias, manuais e orientações
@@ -216,14 +138,14 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 
 ---
 
-# Pagamentos e benefícios
+# ############################ Pagamentos e benefícios
 
 ## Contracheque
 
 ### Sou.Gov - Acesso
 | ID | Item | URL |
 |----|------|-----|
-| 40 | Contracheque - Sou.Gov | https://sougov.sigepe.gov.br/sougov/ |
+| 40 | Contracheque - Sou.Gov | https://sougov.sigepe.gov.br/sougov/ |**Acesso à Informação?**
 
 ## Exercícios anteriores
 
@@ -237,13 +159,20 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 ### Tabelas de remuneração
 | ID | Item | URL |
 |----|------|-----|
-| 50 | Tabelas de Remuneração | https://prodep.ufba.br/node/1387 |
+| 50 | Tabelas de Remuneração | https://prodep.ufba.br/node/1387 |**Acesso á Informação?**
+
+## Auxílios e benefícios
+
+### Manual de Concessão de Auxílios e Benefícios
+| ID | Item | URL |
+|----|------|-----|
+| 24 | Concessão de Auxílios e Benefícios | https://prodep.ufba.br/sites/prodep.ufba.br/files/Manual_Auxilios_Beneficios.pdf |
 
 ## Auxílio-saúde
 
 | ID | Item | URL |
 |----|------|-----|
-| 51 | Tabela do Auxílio Saúde | https://prodep.ufba.br/sites/prodep.ufba.br/files/Portaria%20n.%202.778-2026%20-%20MGI%20-%20Fixa%20valor%20mensal%20do%20per%20capita.pdf |
+| 51 | Tabela do Auxílio Saúde | https://prodep.ufba.br/sites/prodep.ufba.br/files/Portaria%20n.%202.778-2026%20-%20MGI%20-%20Fixa%20valor%20mensal%20do%20per%20capita.pdf |**Acesso á Informação?**
 | 52 | Tutorial Quitação Aux. Saúde | https://prodep.ufba.br/sites/prodep.ufba.br/files/Tutorial%20de%20quita%C3%A7%C3%A3o%20do%20plano%20de%20sa%C3%BAde_UFBA.pdf |
 
 ## GECC
@@ -257,12 +186,12 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 
 | ID | Item | URL |
 |----|------|-----|
-| 81 | Cronograma da Folha — Mês atual/ano atual | (PDF próprio) |
-| 82 | Cronograma da Folha — Mês anterior/ano atual | (PDF próprio) |
+| 81 | Cronograma da Folha — Mês atual/ano atual | (PDF próprio) | **Acesso á Informação?**
+| 82 | Cronograma da Folha — Mês anterior/ano atual | (PDF próprio) | **Acesso á Informação?**
 
 ---
 
-# Jornada de trabalho
+# ############################ Jornada de trabalho
 
 - **Sobre a CAJ**
   - | 29 | Informações (Jornada de trabalho) | http://www.prodep.ufba.br/caj |
@@ -281,10 +210,77 @@ Aqui está o agrupamento **hierárquico** dos paths, preservando **id** e **URL*
 
 ---
 
-# link de rodapé
+# ############################ Acesso à informação
+
+## Relatórios de gestão
+
+| ID | Item | URL |
+|----|------|-----|
+| 5 | Relatório de Gestão - Exercício 2025 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relato%CC%81rio%20de%20Gesta%CC%83o_2025_versa%CC%83o%20interna.pdf |
+| 6 | Relatório de Gestão - Exercício 2024 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2024_vers%C3%A3o%20interna.pdf |
+| 7 | Relatório de Gestão - Exercício 2023 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2023_vers%C3%A3o%20interna.pdf |
+| 8 | Relatório de Gestão - Exercício 2022 | https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2022.pdf |
+
+## Boletim de pessoal e ofícios
+
+### Consulta ao Boletim de Pessoal
+| ID | Item | URL |
+|----|------|-----|
+| 36 | Boletim de Pessoal | http://www.cgp.ufba.br/formBusca.asp |
+
+### Ofícios Circulares
+| ID | Item | URL |
+|----|------|-----|
+| 64 | Ofícios Circulares | https://prodep.ufba.br/node/43 |
+
+## Informações funcionais e financeiras
+
+### Histórico funcional / financeiro
+| ID | Item | URL |
+|----|------|-----|
+| 44 | Histórico Funcional / Financeiro | https://sigrh.ufba.br/sigrh/public/home.jsf |
+
+## Quadro de pessoal
+
+| ID | Item | URL |
+|----|------|-----|
+| 55 | Docentes MS - Vagas Desocupadas | https://prodep.ufba.br/node/1183 |
+| 56 | Docentes MS - Vagas Ocupadas | https://prodep.ufba.br/node/1184 |
+| 57 | Docentes EBTT - Vagas Desocupadas | https://prodep.ufba.br/node/1185 |
+| 58 | Docentes EBTT - Vagas Ocupadas | https://prodep.ufba.br/node/1186 |
+| 67 | Quadro de Referência - Docente | https://prodep.ufba.br/node/1306 |
+| 68 | Quadro de Referência - PCCTAE | https://prodep.ufba.br/node/1307 |
+| 69 | Quantitativo de Cargos | https://sigrh.ufba.br/sigrh/public/abas/quantitativo_cargos_UFBA.jsf |
+
+## Servidores e funções
+
+| ID | Item | URL |
+|----|------|-----|
+| 63 | Ocupantes de CD, FG e FCC | https://sigrh.ufba.br/sigrh/public/form_busca_ocupantes_cd_fg_fcc_ufba.jsf |
+| 70 | Relação dos Servidores | https://sigrh.ufba.br/sigrh/public/menu_consultas_servidores_ufba.jsf |
+| 75 | Servidores Cedidos | https://sigrh.ufba.br/sigrh/public/menu_consultas_servidores_ufba.jsf |
+
+| 59 | Docentes em DE cedidos | https://sigrh.ufba.br/sigrh/public/abas/form_docentes_DE_cedidos_UFBA.jsf |
+
+## Remuneração e benefícios
+
+### Remuneração dos servidores
+| ID | Item | URL |
+|----|------|-----|
+| 71 | Remuneração dos Servidores | https://portaldatransparencia.gov.br/servidores/consulta?orgaosServidorLotacao=OR26232&ordenarPor=nome&direcao=asc |
+
+### Pagamentos de adicionais e gratificações
+| ID | Item | URL |
+|----|------|-----|
+| 77 | Consultar Pagamento (GECC) | https://sigrh.ufba.br/sigrh/public/abas/form_relatorio_adicionais_gratificacoes_ufba.jsf |
+
+---
+
+# ############################ link de rodapé
 | ID | Item | URL |
 |----|------|-----|
 | 13 | Mapa do Site | https://prodep.ufba.br/sitemap |
 
 ---
+
 

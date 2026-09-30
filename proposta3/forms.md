@@ -1,47 +1,4 @@
-### Grupo recomendado: **Jornada de trabalho**
-
-- **Sobre a CAJ**
-  - Sobre a Comissão de Ajuste de Jornada
-  - Comissões internas de ajuste de jornada
-- **Solicitação e acompanhamento**
-  - Procedimentos para solicitação de ajuste de jornada
-  - Formulários e tutoriais para solicitação
-  - Acompanhamento de processos
-- **Normas e orientações**
-  - Normas sobre ajuste e flexibilização da jornada
-  - Perguntas frequentes
-- **Referências**
-  - Flexibilização da jornada em outras IFES
-- **Comunicados e atividades da CAJ**
-  - 'Notícias'
-
-### Grupo recomendado: **Pagamentos e benefícios**
-
-- **Contracheque**
-  - Contracheque no SIGRH
-  - Contracheque no Sou.Gov
-- **Remuneração**
-  - Tabelas de remuneração
-- **Exercícios anteriores**
-  - Declaração para pagamento de exercícios anteriores
-- **Auxílio-saúde**
-  - Tabela do auxílio-saúde
-  - Tutorial de quitação do plano de saúde
-
-E ainda devemos avaliar os próximos itens para saber se entram nele **Adicionais e gratificações, GECC, cronograma da folha e outros auxílios**.
-
-Isso é melhor, na minha avaliação, do que manter:
-
-`Serviços > Pagamentos e contracheque`
-
-de um lado, e
-
-`Acesso à informação > Remuneração e benefícios`
-
-do outro.
-
-O usuário não precisa decidir primeiro se **“Tabela do Auxílio Saúde” é informação** e **“Tutorial Quitação Aux. Saúde” é serviço**. Ele pensa primeiro: **“estou procurando algo sobre auxílio-saúde”**. Portanto, colocá-los juntos aumenta muito a encontrabilidade.
-
+# Os formulários entram na página do item específico
 
 Edital de Remoção Técnico UFBA 2023-ANEXO II
 Abono de Permanência - Solicitação

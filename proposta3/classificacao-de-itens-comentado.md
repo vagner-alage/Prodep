@@ -174,7 +174,7 @@
 # | 42 | Documentos Para Posse | **Serviços > Ingresso e posse > Documentos exigidos para posse** 
 >https://prodep.ufba.br/sites/prodep.ufba.br/files/DOCUMENTOS%20EXIGIDOS%20PARA%20A%20POSSE.pdf
 
-# | 43 | Formulários | **Serviços > Processos e documentos > Formulários** 
+# | 43 | Formulários | **Serviços > Formulários e requerimentos > Formulários da PRODEP** 
 >https://prodep.ufba.br/formularios
 > Deve haver um link total.
 > Cada item que exija um formulário deve linkar o formulário específico.
@@ -227,7 +227,7 @@
 # | 58 | Docentes EBTT - Vagas Ocupadas | **Acesso à informação > Quadro de pessoal > Docentes EBTT - Vagas Ocupadas** 
 >https://prodep.ufba.br/node/1186
 
-# | 59 | Docentes em DE cedidos | **Acesso à informação > Quadro de pessoal > Docentes em DE cedidos** 
+# | 59 | Docentes em DE cedidos | **Acesso à informação > Servidores e funções > Docentes em DE cedidos** 
 >https://sigrh.ufba.br/sigrh/public/abas/form_docentes_DE_cedidos_UFBA.jsf
 conteúdo da página:
 Portal Público > Quantitativo de Docentes em DE Cedidos para Órgãos do Estado ou Municípios
@@ -263,7 +263,7 @@ Nível da Designação:
 TODOS OS NÍVEIS
 
 
-# | 64 | Ofícios Circulares | **Acesso à informação > Ofícios e publicações oficiais > Ofícios Circulares** 
+# | 64 | Ofícios Circulares | **Acesso à informação > Boletim de pessoal e ofícios > Ofícios Circulares** 
 >https://prodep.ufba.br/node/43
 >catálogo dos ofícios circulares publicados ao longo de cada ano, desde 2019. Atualizado a cada nova publicação
 
@@ -332,7 +332,7 @@ Relatórios servidores
 << voltar ao menu principal
 
 
-# | 71 | Remuneração dos Servidores | **Acesso à informação > Transparência > Remuneração dos servidores** 
+# | 71 | Remuneração dos Servidores | **Acesso à informação > Remuneração e benefícios > Remuneração dos servidores** 
 >https://portaldatransparencia.gov.br/servidores/consulta?orgaosServidorLotacao=OR26232&ordenarPor=nome&direcao=asc
 
 | 72 | Seleção Docente | **Mero item agregador** 

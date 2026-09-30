@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Protótipo PRODEP — Navegação a partir da Página Inicial</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+<style>
+  :root {
+    --cor-primaria: #0b3667;
+    --cor-secundaria: #1b4e86;
+    --cor-bg-menu: #0b3667;
+    --cor-texto-menu: #fff;
+    --cor-borda-menu: #2c629e;
+    --cor-fundo-principal: #f0f2f5;
+    --cor-fundo-caixa: #ffffff;
+    --cor-texto: #333;
+    --cor-borda: #ddd;
+
+    --verde: #2e7d32;
+    --amarelo: #f9a825;
+    --vermelho: #c62828;
+    --azul: #1565c0;
+    --azul-claro: #e3f2fd;
+  }
+
+  * { box-sizing: border-box; font-family: 'Roboto', system-ui, -apple-system, Segoe UI, sans-serif; }
+
+  body {
+    margin: 0;
+    background: var(--cor-fundo-principal);
+    color: var(--cor-texto);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+  }
+
+  .barra-teste {
+    background: #fff3cd; border-bottom: 2px solid #ffc107;
+    padding: 9.6px 24px; display: flex; justify-content: space-between;
+    align-items: center; gap: 16px; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 200; font-size: 14.4px;
+  }
+  .barra-teste .alvo { font-weight: 700; color: #856404; }
+  .barra-teste .progresso { color: #555; }
+
+  #barra-brasil {
+    background-color: #071d41; box-sizing: content-box;
+    display: flex; flex-direction: column-reverse; align-items: center;
+    font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  }
+  #barra-brasil div, #barra-brasil a, #barra-brasil ul, #barra-brasil li {
+    margin: 0; padding: 0; font-family: inherit;
+    vertical-align: baseline; font-size: 16px;
+  }
+  #barra-brasil ul { list-style: none; }
+  #barra-brasil .conteudo-barra-brasil {
+    width: 95%; max-width: 1150px; margin: 0 auto; height: 40px;
+    display: flex; flex-flow: row; align-items: center;
+    justify-content: space-between;
+  }
+  #barra-brasil .pic-gov {
+    background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2250%22%20height%3D%2219%22%20version%3D%221.1%22%20viewBox%3D%220%200%2019%2050%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22matrix%28.23%200%200%20.23%20-153%20-147%29%22%3E%3Cg%20transform%3D%22matrix%281.3%200%200%201.3%20-200%20-209%29%22%20fill%3D%22%23fff%22%3E%3Cpath%20d%3D%22m576%20765c0%2034-17%2046-50%2046-14%200-25-2.9-32-5.3l1.4-23c8.8%204.3%2016%206.9%2028%206.9%2017%200%2026-7.9%2026-24v-4.5h-.32c-6.9%209.8-17%2014-28%2014-23%200-37-17-37-42%200-25%2012-44%2038-44%2012%200%2022%206.8%2028%2017h.32v-15h26v74m-46-12c10%200%2018-8.7%2018-22%200-9.3-5.5-20-18-20-11%200-16%209.5-16%2021%200%2013%207.7%2020%2016%2020z%22%2F%3E%3Cpath%20d%3D%22m662%20686h28l22%2062%2022-62h28l-35%2089h-31l-34-89%22%2F%3E%3Cpath%20d%3D%22m576%20732c0-28%2021-44%2049-44s49%2016%2049%2044c0%2028-21%2044-49%2044-28%200-49-16-49-44m68%200c0-13-5.5-24-19-24s-19%2011-19%2024c0%2012%205.5%2024%2019%2024s19-11%2019-24z%22%2F%3E%3Cpath%20d%3D%22m760%20762c0%207.6-6.2%2014-14%2014-7.6%200-14-6.2-14-14%200-7.6%206.2-14%2014-14%207.6%200%2014%206.2%2014%2014z%22%2F%3E%3Cpath%20d%3D%22m762%20654h29v48h.32c7.4-9.3%2017-13%2029-13%2023%200%2036%2022%2036%2042%200%2025-13%2045-38%2045-13%200-25-7.6-29-17h-.32v15h-27v-121m47%2057c-11%200-18%209.3-18%2022%200%2012%208%2021%2018%2021%2011%200%2018-9.2%2018-22%200-11-6.3-21-18-21z%22%2F%3E%3Cpath%20d%3D%22m916%20714c-3.2-.97-6.4-.97-9.8-.97-14%200-21%209.8-21%2026v35h-29v-84h26v15h.32c5-11%2012-17%2025-17%203.4%200%206.9.48%209.8.96l-1.4%2024z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    display: block; height: 19px; min-width: 50px; margin-right: 10px;
+    line-height: 0; font-size: 0px; color: rgba(0,0,0,0);
+  }
+  #barra-brasil .conteudo-barra-brasil nav { overflow-x: auto; }
+  #barra-brasil .conteudo-barra-brasil nav ul {
+    display: flex; flex-flow: row; justify-content: flex-start;
+    align-items: center; width: auto; max-width: none;
+  }
+  #barra-brasil .conteudo-barra-brasil nav ul li.espacador {
+    height: 20px; width: 1px;
+    border-right: 1px solid rgba(151,151,151,0.3);
+    margin: 0px 7px 0px 20px;
+  }
+  #barra-brasil a {
+    text-decoration: none; color: #fff; font-weight: bold;
+    font-size: 11.2px; font-family: Raleway, Arial, Helvetica, sans-serif;
+    text-transform: uppercase; transition: all 0.1s ease-in-out;
+  }
+  #barra-brasil .conteudo-barra-brasil nav a.link-externo-barra::before {
+    content: ""; display: inline-block; width: 11px; height: 10px;
+    margin-right: 6px;
+    background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%2210%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M10.174.169l-.003%204.002L6.173.173z%22%2F%3E%3Cpath%20d%3D%22M4%204.51L7.91.6l1.768%201.768-3.91%203.91zM0%200h3.5v2.5H0z%22%2F%3E%3Cpath%20d%3D%22M0%202h2.5v5H0zM7.5%206H10v3H7.5z%22%2F%3E%3Cpath%20d%3D%22M0%207h10v2.5H0z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    opacity: 0.5; transition: all 0.1s ease-in-out;
+  }
+  #barra-brasil .conteudo-barra-brasil nav a:hover { opacity: 1; }
+
+  header.site {
+    background: #fff; border-bottom: 1px solid var(--cor-borda-menu);
+    padding: 16px 0 0 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  header.site .header-top {
+    max-width: 1150px; margin: 0 auto; padding: 0 16px 8px 16px;
+    display: flex; justify-content: flex-end; align-items: center;
+    gap: 24px; flex-wrap: wrap; border-bottom: 1px solid #e5eaee;
+  }
+  header.site .header-top .links-topo {
+    display: flex; gap: 19.2px; list-style: none; margin: 0; padding: 0;
+  }
+  header.site .header-top .links-topo a {
+    font-size: 11.2px; text-transform: uppercase;
+    color: var(--cor-primaria); cursor: pointer; font-weight: 600;
+    letter-spacing: 0.5px; text-decoration: none; transition: 0.2s;
+  }
+  header.site .header-top .links-topo a:hover { color: var(--azul); }
+
+  header.site .header-main-content {
+    max-width: 1150px; margin: 0 auto; padding: 16px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; flex-wrap: wrap;
+  }
+  header.site .logo {
+    font-family: 'Raleway', sans-serif; font-weight: 700;
+    font-size: 28.8px; color: var(--cor-primaria); line-height: 1;
+  }
+  header.site .logo small {
+    display: block; font-size: 12px; font-weight: 400;
+    color: #666; margin-top: 4px; letter-spacing: 0.5px;
+  }
+  header.site nav.menu {
+    display: flex; gap: 0; flex-wrap: wrap;
+    background: var(--cor-bg-menu); border-radius: 4px;
+    overflow: hidden; width: 100%;
+  }
+  header.site nav.menu button {
+    background: transparent; border: none;
+    border-right: 1px solid var(--cor-borda-menu);
+    color: var(--cor-texto-menu); padding: 12px 17.6px;
+    cursor: pointer; font-size: 12.48px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.4px;
+    font-family: 'Raleway', sans-serif; transition: all 0.2s;
+  }
+  header.site nav.menu button:last-child { border-right: none; }
+  header.site nav.menu button:hover { background: var(--cor-secundaria); color: #fff; }
+
+  header.site .search-row {
+    max-width: 1150px; margin: 0 auto;
+    padding: 8px 16px 16px 16px; display: flex; justify-content: flex-end;
+  }
+  header.site .search-box {
+    display: flex; width: 320px; border: 1px solid var(--cor-borda);
+    border-radius: 8px; overflow: hidden; background: #fff;
+  }
+  header.site .search-box input {
+    flex: 1; border: none; padding: 8px 12px; font-size: 13.6px; outline: none;
+  }
+  header.site .search-box button {
+    background: var(--cor-secundaria); color: #fff; border: none;
+    padding: 0 14.4px; cursor: pointer; font-size: 14.4px;
+  }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
+
+  .secao { margin-bottom: 40px; }
+  .secao h2 {
+    font-family: 'Raleway', sans-serif; font-size: 24px; font-weight: 600;
+    text-align: center; color: var(--cor-secundaria);
+    text-transform: uppercase; border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 8px; margin: 0 0 24px; position: relative;
+  }
+  .secao h2 .link-mais {
+    font-size: 14.4px; color: var(--azul); cursor: pointer;
+    font-weight: 500; text-transform: none;
+    position: absolute; right: 0; bottom: 8px;
+  }
+
+  .slider-principal {
+    background: linear-gradient(90deg, #2a4358, #50778f);
+    padding: 0; height: 405px; border-radius: 8px; overflow: hidden;
+    position: relative; margin-bottom: 56px;
+  }
+  .carrossel-container {
+    max-width: 1150px; margin: 0 auto; height: 100%; position: relative;
+  }
+  .carrossel-slides { position: relative; height: 100%; }
+  .carrossel-slide {
+    position: absolute; inset: 0; display: flex; align-items: center;
+    padding: 0 32px; opacity: 0; visibility: hidden; transition: opacity 0.6s ease;
+  }
+  .carrossel-slide.ativo { opacity: 1; visibility: visible; z-index: 2; }
+  .carrossel-slide .texto { flex: 1; padding-left: 32px; padding-right: 32px; color: #fff; }
+  .carrossel-slide .texto .titulo {
+    font-family: 'Raleway', sans-serif; font-weight: 700;
+    font-size: 38.4px; line-height: 1.1; color: #fff;
+    text-shadow: 2px 2px 2px rgba(50,50,50,0.45); margin: 0 0 16px 0;
+  }
+  .carrossel-slide .texto .descricao {
+    font-size: 15.2px; line-height: 1.5; color: #fff; margin-bottom: 19.2px;
+  }
+  .carrossel-slide .texto .btn-slide {
+    display: inline-block; background: rgba(0,0,0,0.36); color: #fff;
+    border: none; padding: 11.2px 24px; border-radius: 4px;
+    font-size: 13.6px; font-weight: 600; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s;
+  }
+  .carrossel-slide .texto .btn-slide:hover { background: rgba(0,0,0,0.6); }
+  .carrossel-slide .imagem {
+    width: 540px; height: 365px; flex-shrink: 0; background: #e0e0e0;
+    border-radius: 10px; display: flex; justify-content: center;
+    align-items: center; color: #666; font-size: 14.4px;
+    font-weight: 600; border: 2px dashed #bbb; margin-right: 16px;
+  }
+  .carrossel-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.4); color: #fff; border: none;
+    width: 40px; height: 60px; cursor: pointer; z-index: 10;
+    font-size: 22.4px; border-radius: 4px; transition: 0.2s;
+  }
+  .carrossel-nav:hover { background: rgba(0,0,0,0.7); }
+  .carrossel-nav.prev { left: 8px; }
+  .carrossel-nav.next { right: 8px; }
+  .carrossel-dots {
+    position: absolute; bottom: 16px; left: 50%;
+    transform: translateX(-50%); display: flex; gap: 8px; z-index: 10;
+  }
+  .carrossel-dots .dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: rgba(255,255,255,0.5); cursor: pointer; transition: 0.2s;
+  }
+  .carrossel-dots .dot.ativo { background: #fff; }
+
+  .avisos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .aviso {
+    background: var(--cor-fundo-caixa); border: 1px solid var(--cor-borda);
+    border-radius: 6px; padding: 16px; cursor: pointer;
+    transition: 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .aviso:hover { border-color: var(--azul); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .aviso .tema { font-size: 12px; text-transform: uppercase; color: var(--cor-primaria); font-weight: 700; }
+  .aviso .titulo { font-weight: 600; margin: 4.8px 0; font-size: 17.6px; }
+  .aviso .ler { font-size: 12.8px; color: var(--azul); font-weight: 700; }
+
+  .noticias-wrapper {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px;
+    background: var(--cor-fundo-caixa); padding: 24px; border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid var(--cor-borda);
+  }
+  .noticia-destaque { display: flex; flex-direction: column; }
+  .noticia-destaque .imagem {
+    min-height: 320px; border-radius: 6px;
+    background: #ffffff url("https://www6.prodep.ufba.br/sites/prodep.ufba.br/themes/ufba_bootstrap/images/brasao_transp.png") center center no-repeat;
+    background-size: 60%; border: 1px solid var(--cor-borda);
+    margin-bottom: 16px; position: relative; overflow: hidden;
+  }
+  .noticia-destaque .imagem::after {
+    content: "Imagem destaque"; position: absolute; bottom: 8px; right: 12px;
+    font-size: 12px; color: #999; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .noticia-destaque .titulo-destaque {
+    font-family: 'Raleway', sans-serif; font-weight: 700;
+    font-size: 17.6px; color: var(--cor-primaria);
+    cursor: pointer; transition: 0.2s;
+  }
+  .noticia-destaque .titulo-destaque:hover { color: var(--azul); }
+
+  .noticia-lista {
+    display: flex; flex-direction: column;
+    border-left: 1px solid var(--cor-borda); padding-left: 24px;
+  }
+  .noticia-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 14.4px 0; border-bottom: 1px solid #eee;
+    cursor: pointer; transition: 0.2s;
+  }
+  .noticia-item:last-of-type { border-bottom: none; }
+  .noticia-item:hover .noticia-titulo { color: var(--azul); }
+  .noticia-data {
+    background: var(--cor-primaria); color: #fff; font-size: 11.2px;
+    font-weight: 700; text-align: center; padding: 6.4px 8px;
+    border-radius: 4px; min-width: 70px; line-height: 1.2;
+  }
+  .noticia-titulo {
+    font-size: 15.2px; font-weight: 700; color: #222;
+    line-height: 1.35; transition: 0.2s;
+  }
+  .noticias-footer {
+    grid-column: 1 / -1; text-align: center; margin-top: 16px;
+    padding-top: 16px; border-top: 1px solid var(--cor-borda);
+  }
+  .noticias-footer a {
+    display: inline-block; background: var(--cor-primaria); color: #fff;
+    padding: 9.6px 32px; border-radius: 5px; font-weight: 600;
+    cursor: pointer; text-transform: uppercase; font-size: 13.6px; transition: 0.2s;
+  }
+  .noticias-footer a:hover { background: var(--cor-secundaria); }
+
+  .categorias { display: flex; flex-wrap: wrap; gap: 6.4px; justify-content: center; }
+  .chip {
+    background: var(--cor-fundo-caixa); border: 1px solid var(--cor-borda);
+    padding: 6.4px 12.8px; border-radius: 4px; font-size: 13.6px;
+    cursor: pointer; transition: 0.2s; font-weight: 500;
+    color: var(--cor-secundaria); line-height: 1.2;
+  }
+  .chip:hover { background: var(--cor-secundaria); color: #fff; border-color: var(--cor-secundaria); }
+
+  .grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card-grupo {
+    background: var(--cor-fundo-caixa); border: 1px solid var(--cor-borda);
+    border-radius: 6px; padding: 24px; text-align: center;
+    font-weight: 600; font-size: 16px; cursor: pointer;
+    transition: all 0.2s ease-in-out; color: var(--cor-primaria);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card-grupo:hover {
+    background: var(--cor-secundaria); color: #fff;
+    border-color: var(--cor-secundaria); transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+
+  footer.site {
+    background: #071d41; border-top: 5px solid var(--cor-secundaria);
+    padding: 32px 32px 24px; color: #ddd; font-size: 13.6px; margin-top: 32px;
+  }
+  footer.site .footer-container {
+    max-width: 1150px; margin: 0 auto; display: flex;
+    flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-start;
+  }
+  footer.site .footer-info { flex: 1 1 380px; line-height: 1.6; }
+  footer.site .footer-info strong {
+    color: #fff; font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.5px; display: block; margin-bottom: 6.4px;
+  }
+  footer.site .footer-info a { color: #a1ccff; text-decoration: none; }
+  footer.site .footer-info a:hover { text-decoration: underline; }
+  footer.site .footer-links { display: flex; flex-direction: column; gap: 8px; min-width: 180px; }
+  footer.site .footer-links a {
+    color: #a1ccff; cursor: pointer; text-decoration: none;
+    font-weight: 600; text-transform: uppercase; font-size: 11.52px;
+    letter-spacing: 0.5px; transition: 0.2s;
+  }
+  footer.site .footer-links a:hover { color: #fff; }
+  footer.site .footer-bottom {
+    max-width: 1150px; margin: 24px auto 0; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    text-align: center; font-size: 12px; color: #8ca9cc;
+  }
+
+  .breadcrumb {
+    font-size: 13.6px; color: #666; margin-bottom: 16px;
+    display: flex; gap: 6.4px; flex-wrap: wrap;
+  }
+  .breadcrumb span.crumb { cursor: pointer; color: var(--azul); }
+  .breadcrumb span.crumb:hover { text-decoration: underline; }
+  .breadcrumb span.sep { color: #aaa; }
+
+  .pagina-grupo {
+    background: var(--cor-fundo-caixa); padding: 32px;
+    border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .pagina-grupo h2.titulo {
+    font-family: 'Raleway', sans-serif; font-size: 28.8px;
+    color: var(--cor-primaria); margin: 0 0 24px;
+    border-bottom: 2px solid var(--cor-borda); padding-bottom: 8px;
+  }
+  .pagina-grupo .subgrupo { margin-bottom: 32px; }
+  .pagina-grupo .subgrupo h3 {
+    font-size: 19.2px; color: var(--cor-secundaria);
+    border-bottom: 1px solid #eee; padding-bottom: 6.4px; margin-bottom: 16px;
+  }
+  .pagina-grupo .itens { display: flex; flex-wrap: wrap; gap: 9.6px; }
+
+  .item {
+    background: #f9f9f9; border: 1px solid var(--cor-borda);
+    padding: 9.6px 19.2px; border-radius: 6px; cursor: pointer;
+    transition: 0.2s; user-select: none; font-size: 15.2px;
+  }
+  .item:hover { background: var(--azul-claro); border-color: var(--azul); }
+  .item.acerto { background: var(--verde) !important; color: #fff !important; border-color: var(--verde) !important; }
+  .item.erro { background: var(--amarelo) !important; color: #222 !important; border-color: var(--amarelo) !important; }
+  .item.falha { background: var(--vermelho) !important; color: #fff !important; border-color: var(--vermelho) !important; }
+
+  .btn-voltar {
+    background: var(--cor-fundo-caixa); border: 1px solid var(--cor-borda);
+    color: var(--cor-secundaria); padding: 9.6px 19.2px;
+    border-radius: 6px; cursor: pointer; font-weight: 600;
+    margin-bottom: 24px; transition: 0.2s;
+  }
+  .btn-voltar:hover { background: var(--cor-secundaria); color: #fff; }
+
+  .resultado-final {
+    background: #fff; border: 2px solid var(--azul);
+    padding: 24px; border-radius: 8px; margin-top: 32px;
+  }
+  .resultado-final h2 { margin-top: 0; }
+  .resultado-final ul { list-style: none; padding: 0; }
+  .resultado-final li {
+    padding: 8px 0; border-bottom: 1px solid #eee;
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  .badge {
+    display: inline-block; padding: 4px 11.2px; border-radius: 4px;
+    font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap;
+  }
+  .badge.verde { background: var(--verde); }
+  .badge.amarelo { background: var(--amarelo); color: #222; }
+  .badge.vermelho { background: var(--vermelho); }
+  .btn-reiniciar {
+    background: var(--azul); color: #fff; border: none;
+    padding: 11.2px 24px; border-radius: 6px; cursor: pointer;
+    font-weight: 600; margin-top: 16px; font-size: 16px;
+  }
+  .btn-reiniciar:hover { background: #0d47a1; }
+
+  @media (max-width: 900px) {
+    .carrossel-slide .imagem { width: 320px; height: 220px; }
+    .carrossel-slide .texto .titulo { font-size: 25.6px; }
+    .slider-principal { height: 340px; }
+    .carrossel-slide { padding: 0 16px; }
+    .carrossel-slide .texto { padding-left: 16px; padding-right: 16px; }
+  }
+  @media (max-width: 800px) {
+    .avisos { grid-template-columns: 1fr; }
+    .noticias-wrapper { grid-template-columns: 1fr; }
+    .noticia-lista { border-left: none; padding-left: 0; border-top: 1px solid var(--cor-borda); padding-top: 16px; }
+    .grid-cards { grid-template-columns: 1fr 1fr; }
+    .secao h2 .link-mais { position: static; display: block; margin-top: 8px; }
+    .carrossel-slide { flex-direction: column; text-align: center; }
+    .carrossel-slide .imagem { width: 90%; height: 180px; margin: 8px 0; }
+    .carrossel-slide .texto .titulo { font-size: 22.4px; }
+    .slider-principal { height: auto; min-height: 420px; margin-bottom: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="barra-brasil">
+  <div class="conteudo-barra-brasil">
+    <a href="https://gov.br/" class="pic-gov" title="GovBR">GovBR</a>
+    <nav id="menu-barra-brasil">
+      <ul class="lista-barra-brasil">
+        <li class="espacador"></li>
+        <li class="list-item"><a href="http://www.gov.br/secom/pt-br/acesso-a-informacao/comunicabr" class="link-barra link-externo-barra">Comunica BR</a></li>
+        <li class="espacador"></li>
+        <li class="list-item"><a href="http://www.gov.br/acessoainformacao/" class="link-barra link-externo-barra">Acesso à informação</a></li>
+        <li class="espacador"></li>
+        <li class="list-item"><a href="https://www.gov.br/pt-br/participacao-social/" class="link-barra link-externo-barra">Participe</a></li>
+        <li class="espacador"></li>
+        <li class="list-item"><a href="http://www4.planalto.gov.br/legislacao/" class="link-barra link-externo-barra">Legislação</a></li>
+        <li class="espacador"></li>
+        <li class="list-item"><a href="http://www.gov.br/pt-br/orgaos-do-governo" class="link-barra link-externo-barra">Órgãos do Governo</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div class="barra-teste" style="display: none;">
+  <div>Item a encontrar: <span class="alvo" id="itemAtual">—</span></div>
+  <div class="progresso" id="progresso">0 / 100</div>
+</div>
+
+<header class="site">
+  <div class="header-top">
+    <ul class="links-topo">
+      <li><a>Acessibilidade</a></li>
+      <li><a>Alto Contraste</a></li>
+      <li style="display: none;"><a data-link="mapa-site">Mapa do site</a></li>
+    </ul>
+  </div>
+
+  <div class="header-main-content">
+    <div class="logo">
+      PRODEP / UFBA
+      <small>Pró-Reitoria de Desenvolvimento de Pessoas</small>
+    </div>
+  </div>
+
+  <div style="max-width: 1150px; margin: 0 auto; padding: 0 16px;">
+    <nav class="menu">
+      <button data-grupo="Institucional">Institucional</button>
+      <button data-grupo="Concursos">Concursos</button>
+      <button data-grupo="Sistemas">Sistemas</button>
+      <button data-grupo="Serviços">Serviços</button>
+      <button data-grupo="Acesso à informação">Acesso à informação</button>
+    </nav>
+  </div>
+
+  <div class="search-row">
+    <div class="search-box">
+      <input type="text" placeholder="Buscar" />
+      <button type="button">🔍</button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="site">
+  <div class="footer-container">
+    <div class="footer-info">
+      <strong>PRÓ-REITORIA DE DESENVOLVIMENTO DE PESSOAS</strong>
+      End.: Rua Barão de Jeremoabo, s/n, Pav. 7 e 8 – Campus Universitário – Ondina<br>
+      CEP: 40.170-115 – Salvador/BA<br>
+      Tel: (71) 3283-6425 / 6418 || <a href="#">Contatos</a> || E-mail: <a href="mailto:prodep@ufba.br">prodep@ufba.br</a>
+    </div>
+    <div class="footer-links">
+      <a data-link="mapa-site">Mapa do Site</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © PRODEP / UFBA — Protótipo de Teste de Navegação
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   1. DADOS DOS ITENS
+   ============================================================ */
+const ITENS = [
+  { id: 1, nome: "Sobre a PRODEP", path: "Institucional > Estrutura e competências" },
+  { id: 2, nome: "Estrutura e Competências", path: "Institucional > Estrutura organizacional da PRODEP" },
+  { id: 3, nome: "Agenda Pró-Reitor", path: "Institucional > Agendas" },
+  { id: 4, nome: "Portarias de Delegação de Competência", path: "Institucional > Atos e delegações" },
+  { id: 5, nome: "Relatório de Gestão - Exercício 2025", path: "Acesso à informação > Relatórios de gestão" },
+  { id: 6, nome: "Relatório de Gestão - Exercício 2024", path: "Acesso à informação > Relatórios de gestão" },
+  { id: 7, nome: "Relatório de Gestão - Exercício 2023", path: "Acesso à informação > Relatórios de gestão" },
+  { id: 8, nome: "Relatório de Gestão - Exercício 2022", path: "Acesso à informação > Relatórios de gestão" },
+  { id: 9, nome: "Concursos", path: "Concursos > Portal de Concursos da UFBA" },
+  { id: 10, nome: "Contatos da PRODEP", path: "Institucional > Contatos e atendimento" },
+  { id: 11, nome: "Fale Conosco", path: "Institucional > Contatos e atendimento" },
+  { id: 12, nome: "Sistemas Corporativos", path: "Sistemas > Catálogo de sistemas" },
+  { id: 13, nome: "Mapa do Site", path: "link de rodapé" },
+  { id: 14, nome: "Numeração de Documentos", path: "Sistemas > Sistemas administrativos internos" },
+  { id: 15, nome: "Exercícios Anteriores - NOF", path: "Sistemas > Sistemas administrativos internos" },
+  { id: 16, nome: "Publicação do Boletim de Pessoal - SECEXEC", path: "Sistemas > Sistemas administrativos internos" },
+  { id: 17, nome: "Sistema de Acompanhamento de Processos - CAJ", path: "Sistemas > Sistemas administrativos internos" },
+  { id: 19, nome: "SisRD - NAD/NDI", path: "Sistemas > Sistemas administrativos internos" },
+  { id: 20, nome: "Validação de Diploma - NUAV", path: "Sistemas > Sistemas administrativos internos" },
+  { id: 22, nome: "Rotinas Administrativas - PRODEP", path: "Sistemas > Sistemas administrativos internos" },
+  { id: 23, nome: "Aposentadoria", path: "Serviços > Aposentadoria e pensão" },
+  { id: 24, nome: "Concessão de Auxílios e Benefícios", path: "Pagamentos e benefícios > Auxílios e benefícios" },
+  { id: 25, nome: "Provimento", path: "Serviços > Ingresso e posse" },
+  { id: 27, nome: "Acompanhamento de Processos", path: "Serviços > Jornada de trabalho > Solicitação e acompanhamento" },
+  { id: 28, nome: "Comissões Internas", path: "Serviços > Jornada de trabalho > Sobre a CAJ" },
+  { id: 29, nome: "Informações (Jornada de trabalho)", path: "Serviços > Jornada de trabalho > Sobre a CAJ" },
+  { id: 30, nome: "Procedimentos (Jornada de trabalho)", path: "Serviços > Jornada de trabalho > Solicitação e acompanhamento" },
+  { id: 31, nome: "Normatizações (Jornada de trabalho)", path: "Serviços > Jornada de trabalho > Normas e orientações" },
+  { id: 32, nome: "Notícias (Jornada de trabalho)", path: "Serviços > Jornada de trabalho > Comunicados e atividades da CAJ" },
+  { id: 33, nome: "Perguntas Frequentes (Jornada de trabalho)", path: "Serviços > Jornada de trabalho > Normas e orientações" },
+  { id: 34, nome: "Ajuste para Flexibilização da Jornada de Trabalho em outras IFES", path: "Serviços > Jornada de trabalho > Referências" },
+  { id: 35, nome: "Formulários para Solicitação do Ajuste", path: "Serviços > Jornada de trabalho > Solicitação e acompanhamento" },
+  { id: 36, nome: "Boletim de Pessoal", path: "Acesso à informação > Boletim de pessoal e ofícios" },
+  { id: 37, nome: "Capacitação", path: "Serviços > Carreira e desenvolvimento" },
+  { id: 40, nome: "Contracheque - Sou.Gov", path: "Pagamentos e benefícios > Contracheque" },
+  { id: 41, nome: "Declaração Exercícios Anteriores", path: "Pagamentos e benefícios > Exercícios anteriores" },
+  { id: 42, nome: "Documentos Para Posse", path: "Serviços > Ingresso e posse" },
+  { id: 43, nome: "Formulários", path: "Serviços > Formulários e requerimentos" },
+  { id: 44, nome: "Histórico Funcional / Financeiro", path: "Acesso à informação > Informações funcionais e financeiras" },
+  { id: 45, nome: "Perguntas e Respostas", path: "Serviços > Guias, manuais e orientações" },
+  { id: 46, nome: "Procedimentos Operacionais (PEN)", path: "Serviços > Processos e documentos" },
+  { id: 48, nome: "Qualidade de Vida no Trabalho", path: "Serviços > Saúde, segurança e qualidade de vida" },
+  { id: 50, nome: "Tabelas de Remuneração", path: "Pagamentos e benefícios > Remuneração" },
+  { id: 51, nome: "Tabela do Auxílio Saúde", path: "Pagamentos e benefícios > Auxílio-saúde" },
+  { id: 52, nome: "Tutorial Quitação Aux. Saúde", path: "Pagamentos e benefícios > Auxílio-saúde" },
+  { id: 54, nome: "Consultar Pagamento (Adicionais e Gratificações)", path: "Acesso à informação > Remuneração e benefícios" },
+  { id: 55, nome: "Docentes MS - Vagas Desocupadas", path: "Acesso à informação > Quadro de pessoal" },
+  { id: 56, nome: "Docentes MS - Vagas Ocupadas", path: "Acesso à informação > Quadro de pessoal" },
+  { id: 57, nome: "Docentes EBTT - Vagas Desocupadas", path: "Acesso à informação > Quadro de pessoal" },
+  { id: 58, nome: "Docentes EBTT - Vagas Ocupadas", path: "Acesso à informação > Quadro de pessoal" },
+  { id: 59, nome: "Docentes em DE cedidos", path: "Acesso à informação > Servidores e funções" },
+  { id: 60, nome: "Formulário Estágio Probatório - Técnico", path: "Serviços > Vida funcional e estágio probatório" },
+  { id: 61, nome: "Laudo de Avaliação Ambiental", path: "Serviços > Saúde, segurança e qualidade de vida" },
+  { id: 63, nome: "Ocupantes de CD, FG e FCC", path: "Acesso à informação > Servidores e funções" },
+  { id: 64, nome: "Ofícios Circulares", path: "Acesso à informação > Boletim de pessoal e ofícios" },
+  { id: 65, nome: "Procedimentos para Prova de Vida – Aposentados e Pensionistas", path: "Serviços > Aposentadoria e pensão" },
+  { id: 66, nome: "Progressão Funcional e Outros", path: "Serviços > Carreira e desenvolvimento" },
+  { id: 67, nome: "Quadro de Referência - Docente", path: "Acesso à informação > Quadro de pessoal" },
+  { id: 68, nome: "Quadro de Referência - PCCTAE", path: "Acesso à informação > Quadro de pessoal" },
+  { id: 69, nome: "Quantitativo de Cargos", path: "Acesso à informação > Quadro de pessoal" },
+  { id: 70, nome: "Relação dos Servidores", path: "Acesso à informação > Servidores e funções" },
+  { id: 71, nome: "Remuneração dos Servidores", path: "Acesso à informação > Remuneração e benefícios" },
+  { id: 73, nome: "Quadro Permanente", path: "Concursos > Seleção docente" },
+  { id: 74, nome: "Professor Substituto", path: "Concursos > Seleção docente" },
+  { id: 75, nome: "Servidores Cedidos", path: "Acesso à informação > Servidores e funções" },
+  { id: 77, nome: "Consultar Pagamento (GECC)", path: "Acesso à informação > Remuneração e benefícios" },
+  { id: 78, nome: "Normatizações (GECC)", path: "Pagamentos e benefícios > GECC" },
+  { id: 79, nome: "Tutoriais (GECC)", path: "Pagamentos e benefícios > GECC" },
+  { id: 81, nome: "Cronograma da Folha — Mês atual/ano atual", path: "Pagamentos e benefícios > Folha de pagamento" },
+  { id: 82, nome: "Cronograma da Folha — Mês anterior/ano atual", path: "Pagamentos e benefícios > Folha de pagamento" }
+];
+
+/* ============================================================
+   2. ESTRUTURA
+   - Jornada de trabalho como subgrupo de Serviços (intencional).
+   - link de rodapé como grupo de primeiro nível (não é subitem
+     de Acesso à informação).
+   - Remuneração e benefícios em Acesso à informação com 71, 54, 77.
+   - Remuneração (Pagamentos) apenas com 50.
+   - GECC (Pagamentos) apenas com 78, 79.
+   ============================================================ */
+const ESTRUTURA = {
+  "Institucional": {
+    "Estrutura e competências": [1],
+    "Estrutura organizacional da PRODEP": [2],
+    "Agendas": [3],
+    "Atos e delegações": [4],
+    "Contatos e atendimento": [10, 11]
+  },
+  "Concursos": {
+    "Portal de Concursos da UFBA": [9],
+    "Seleção docente": [73, 74]
+  },
+  "Sistemas": {
+    "Catálogo de sistemas": [12],
+    "Sistemas administrativos internos": [14, 15, 16, 17, 19, 20, 22]
+  },
+  "Serviços": {
+    "Jornada de trabalho": {
+      "Sobre a CAJ": [29, 28],
+      "Solicitação e acompanhamento": [30, 35, 27],
+      "Normas e orientações": [31, 33],
+      "Referências": [34],
+      "Comunicados e atividades da CAJ": [32]
+    },
+    "Aposentadoria e pensão": [23, 65],
+    "Ingresso e posse": [25, 42],
+    "Carreira e desenvolvimento": [37, 66],
+    "Formulários e requerimentos": [43],
+    "Processos e documentos": [46],
+    "Guias, manuais e orientações": [45],
+    "Saúde, segurança e qualidade de vida": [48, 61],
+    "Vida funcional e estágio probatório": [60]
+  },
+  "Pagamentos e benefícios": {
+    "Contracheque": [40],
+    "Exercícios anteriores": [41],
+    "Remuneração": [50],
+    "Auxílios e benefícios": [24],
+    "Auxílio-saúde": [51, 52],
+    "GECC": [78, 79],
+    "Folha de pagamento": [81, 82]
+  },
+  "Acesso à informação": {
+    "Relatórios de gestão": [5, 6, 7, 8],
+    "Boletim de pessoal e ofícios": [36, 64],
+    "Informações funcionais e financeiras": [44],
+    "Quadro de pessoal": [55, 56, 57, 58, 67, 68, 69],
+    "Servidores e funções": [63, 70, 75, 59],
+    "Remuneração e benefícios": [71, 54, 77]
+  },
+  "link de rodapé": {
+    "Mapa do Site": [13]
+  }
+};
+
+/* ============================================================
+   3. ESTADO
+   ============================================================ */
+const STORAGE_KEY = "prodep_teste_home";
+let estado = { indiceAtual: 0, resultados: {}, tentativas: {} };
+let slideAtual = 0;
+
+function carregarEstado() {
+  const salvo = localStorage.getItem(STORAGE_KEY);
+  if (salvo) {
+    try {
+      const p = JSON.parse(salvo);
+      if (p && typeof p === "object") estado = { ...estado, ...p };
+    } catch (e) { console.warn(e); }
+  }
+}
+function salvarEstado() { localStorage.setItem(STORAGE_KEY, JSON.stringify(estado)); }
+
+/* ============================================================
+   4. DOM
+   ============================================================ */
+const app = document.getElementById("app");
+const itemAtualEl = document.getElementById("itemAtual");
+const progressoEl = document.getElementById("progresso");
+
+/* ============================================================
+   5. RENDER: PÁGINA INICIAL
+   ============================================================ */
+function renderHome() {
+  app.innerHTML = `
+    <section class="slider-principal">
+      <div class="carrossel-container">
+        <div class="carrossel-slides">
+          <div class="carrossel-slide ativo" data-slide="0">
+            <div class="texto">
+              <p class="titulo">Guia do Servidor UFBA</p>
+              <div class="descricao">
+                Ao recebê-los na UFBA, oferecemos este guia como contribuição da Pró-Reitoria
+                de Desenvolvimento de Pessoas e desejamos que sua leitura e apreciação promovam
+                reflexões sobre o que significa ser Servidor Público numa Universidade Pública
+                Federal Brasileira.
+              </div>
+              <button class="btn-slide" data-grupo="Serviços" data-subgrupo="Guias, manuais e orientações">Veja mais</button>
+            </div>
+            <div class="imagem">Slide 1 — Guia do Servidor</div>
+          </div>
+
+          <div class="carrossel-slide" data-slide="1">
+            <div class="texto">
+              <p class="titulo">Ofício Circular 03/2021 — Programação de férias via SIGRH</p>
+              <div class="descricao">
+                Conforme anunciado no Ofício-Circular nº 2/2021 – PRODEP/UFBA e no
+                Ofício-Circular nº 3/2021 – PRODEP/UFBA, a Universidade passará a utilizar
+                o Módulo de Férias do Sistema Integrado de Gestão de Recursos Humanos
+                (SIGRH) a partir de 01/07/2021.
+              </div>
+              <button class="btn-slide" data-grupo="Acesso à informação" data-subgrupo="Boletim de pessoal e ofícios">Veja mais</button>
+            </div>
+            <div class="imagem">Slide 2 — Ofício Circular</div>
+          </div>
+
+          <div class="carrossel-slide" data-slide="2">
+            <div class="texto">
+              <p class="titulo">Semana do Servidor 2024</p>
+              <div class="descricao">
+                Confira a programação completa da Semana do Servidor 2024 e participe
+                das atividades preparadas especialmente para você.
+              </div>
+              <button class="btn-slide" data-grupo="Serviços" data-subgrupo="Jornada de trabalho">Veja mais</button>
+            </div>
+            <div class="imagem">Slide 3 — Semana do Servidor</div>
+          </div>
+        </div>
+
+        <button class="carrossel-nav prev" id="slidePrev">❮</button>
+        <button class="carrossel-nav next" id="slideNext">❯</button>
+
+        <div class="carrossel-dots">
+          <div class="dot ativo" data-slide="0"></div>
+          <div class="dot" data-slide="1"></div>
+          <div class="dot" data-slide="2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Avisos</h2>
+      <div class="avisos">
+        <div class="aviso" data-grupo="Serviços" data-subgrupo="Jornada de trabalho">
+          <div class="tema">Jornada</div>
+          <div class="titulo">Comunicado 24/2026 — progressão</div>
+          <div class="ler">Ler aviso →</div>
+        </div>
+        <div class="aviso" data-grupo="Serviços" data-subgrupo="Aposentadoria e pensão">
+          <div class="tema">Aposentadoria</div>
+          <div class="titulo">Reconvocação para prova de vida</div>
+          <div class="ler">Ler aviso →</div>
+        </div>
+        <div class="aviso" data-grupo="Pagamentos e benefícios" data-subgrupo="Auxílio-saúde">
+          <div class="tema">Auxílio-saúde</div>
+          <div class="titulo">Comunicado 23/2026 — planos de saúde</div>
+          <div class="ler">Ler aviso →</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Categorias · Perfis</h2>
+      <div class="categorias">
+        <div class="chip">Ativo</div>
+        <div class="chip">Aposentado</div>
+        <div class="chip">Pensionista</div>
+        <div class="chip">Comissionado</div>
+        <div class="chip">Substituto</div>
+        <div class="chip">Visitante</div>
+        <div class="chip">Bolsista</div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Pagamentos e benefícios <span class="link-mais" data-grupo="Pagamentos e benefícios">Todos →</span></h2>
+      <div class="grid-cards">
+        ${Object.keys(ESTRUTURA["Pagamentos e benefícios"]).map(sg =>
+          `<div class="card-grupo" data-grupo="Pagamentos e benefícios" data-subgrupo="${sg}">${sg}</div>`
+        ).join("")}
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Serviços <span class="link-mais" data-grupo="Serviços">Todos os serviços →</span></h2>
+      <div class="grid-cards">
+        ${Object.keys(ESTRUTURA["Serviços"]).map(sg =>
+          `<div class="card-grupo" data-grupo="Serviços" data-subgrupo="${sg}">${sg}</div>`
+        ).join("")}
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Acesso à Informação <span class="link-mais" data-grupo="Acesso à informação">Todas as informações →</span></h2>
+      <div class="grid-cards">
+        ${Object.keys(ESTRUTURA["Acesso à informação"]).map(sg =>
+          `<div class="card-grupo" data-grupo="Acesso à informação" data-subgrupo="${sg}">${sg}</div>`
+        ).join("")}
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Notícias <span class="link-mais" data-grupo="Serviços" data-subgrupo="Jornada de trabalho">Todas as notícias →</span></h2>
+      <div class="noticias-wrapper">
+        <div class="noticia-destaque">
+          <div class="imagem"></div>
+          <a class="titulo-destaque" data-grupo="Serviços" data-subgrupo="Jornada de trabalho">card-fixo notícia destaque</a>
+        </div>
+
+        <div class="noticia-lista">
+          <div class="noticia-item" data-grupo="Serviços" data-subgrupo="Carreira e desenvolvimento">
+            <div class="noticia-data">07/04<br>2026</div>
+            <div class="noticia-titulo">COMUNICADO N. 15/2026 – RECONHECIMENTO DE SABERES E COMPETÊNCIAS PARA SERVIDORES/AS TÉCNICO-ADMINISTRATIVOS/AS INTEGRANTES DO PLANO DE CARREIRA DOS CARGOS TÉCNICO-ADMINISTRATIVOS EM EDUCAÇÃO (RSC-PCCTAE)</div>
+          </div>
+
+          <div class="noticia-item" data-grupo="Pagamentos e benefícios" data-subgrupo="Auxílios e benefícios">
+            <div class="noticia-data">06/04<br>2026</div>
+            <div class="noticia-titulo">COMUNICADO n. 14/2026 – NOVO VALOR DA ASSISTÊNCIA PRÉ-ESCOLAR</div>
+          </div>
+
+          <div class="noticia-item" data-grupo="Pagamentos e benefícios" data-subgrupo="Auxílio-saúde">
+            <div class="noticia-data">06/04<br>2026</div>
+            <div class="noticia-titulo">COMUNICADO n. 13/2026 – NOVO VALOR DO AUXÍLIO SAÚDE SUPLEMENTAR</div>
+          </div>
+
+          <div class="noticias-footer">
+            <a data-grupo="Serviços" data-subgrupo="Jornada de trabalho">Ver mais Notícias</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+  bindEventosHome();
+  initCarrossel();
+}
+
+/* ============================================================
+   6. CARROSSEL
+   ============================================================ */
+function initCarrossel() {
+  const slides = document.querySelectorAll(".carrossel-slide");
+  const dots = document.querySelectorAll(".carrossel-dots .dot");
+  const total = slides.length;
+
+  function irPara(i) {
+    slideAtual = (i + total) % total;
+    slides.forEach((s, idx) => s.classList.toggle("ativo", idx === slideAtual));
+    dots.forEach((d, idx) => d.classList.toggle("ativo", idx === slideAtual));
+  }
+
+  document.getElementById("slidePrev").onclick = () => irPara(slideAtual - 1);
+  document.getElementById("slideNext").onclick = () => irPara(slideAtual + 1);
+  dots.forEach(d => {
+    d.onclick = () => irPara(parseInt(d.dataset.slide, 10));
+  });
+
+  if (window._carrosselInterval) clearInterval(window._carrosselInterval);
+  window._carrosselInterval = setInterval(() => irPara(slideAtual + 1), 6000);
+}
+
+function bindEventosHome() {
+  document.querySelectorAll("[data-grupo]").forEach(el => {
+    el.addEventListener("click", () => {
+      const g = el.dataset.grupo;
+      const sg = el.dataset.subgrupo;
+      if (sg) renderGrupo(g, sg);
+      else renderGrupo(g);
+    });
+  });
+
+  document.querySelectorAll("header.site nav.menu button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const g = btn.dataset.grupo;
+      if (g) renderGrupo(g);
+    });
+  });
+
+  document.querySelectorAll("header.site .links-topo a").forEach(a => {
+    a.addEventListener("click", () => {
+      if (a.dataset.link === "mapa-site") renderGrupo("link de rodapé");
+    });
+  });
+
+  document.querySelectorAll("footer.site .footer-links a").forEach(a => {
+    a.addEventListener("click", () => {
+      if (a.dataset.link === "mapa-site") renderGrupo("link de rodapé");
+    });
+  });
+}
+
+/* ============================================================
+   7. RENDER: PÁGINA DE GRUPO / SUBGRUPO
+   Suporta subgrupo aninhado (Serviços > Jornada de trabalho > ...)
+   ============================================================ */
+function renderGrupo(grupo, subgrupoFoco = null) {
+  const subgrupos = ESTRUTURA[grupo];
+  if (!subgrupos) return;
+
+  if (window._carrosselInterval) {
+    clearInterval(window._carrosselInterval);
+    window._carrosselInterval = null;
+  }
+
+  let html = `
+    <div class="breadcrumb">
+      <span class="crumb" data-voltar-home>Início</span>
+      <span class="sep">›</span>
+      <span>${grupo}</span>
+      ${subgrupoFoco ? `<span class="sep">›</span><span>${subgrupoFoco}</span>` : ""}
+    </div>
+    <button class="btn-voltar" data-voltar-home>← Voltar para a Página Inicial</button>
+    <div class="pagina-grupo">
+      <h2 class="titulo">${grupo}</h2>
+  `;
+
+  const chaves = subgrupoFoco ? [subgrupoFoco] : Object.keys(subgrupos);
+
+  chaves.forEach(sg => {
+    const valor = subgrupos[sg];
+    if (!valor) return;
+
+    // Subgrupo aninhado (ex.: Serviços > Jornada de trabalho > ...)
+    if (typeof valor === "object" && !Array.isArray(valor)) {
+      html += `<div class="subgrupo"><h3>${sg}</h3>`;
+      Object.keys(valor).forEach(nested => {
+        html += `
+          <div class="subgrupo" style="margin-left:16px;">
+            <h3 style="font-size:16px;">${nested}</h3>
+            <div class="itens">
+              ${valor[nested].map(id => {
+                const item = ITENS.find(i => i.id === id);
+                if (!item) return "";
+                const r = estado.resultados[id];
+                let cls = "item";
+                if (r === "verde") cls += " acerto";
+                if (r === "amarelo") cls += " erro";
+                if (r === "vermelho") cls += " falha";
+                return `<div class="${cls}" data-id="${id}">${item.nome}</div>`;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      return;
+    }
+
+    // Subgrupo simples (array de IDs)
+    const ids = valor;
+    html += `
+      <div class="subgrupo">
+        <h3>${sg}</h3>
+        <div class="itens">
+          ${ids.map(id => {
+            const item = ITENS.find(i => i.id === id);
+            if (!item) return "";
+            const r = estado.resultados[id];
+            let cls = "item";
+            if (r === "verde") cls += " acerto";
+            if (r === "amarelo") cls += " erro";
+            if (r === "vermelho") cls += " falha";
+            return `<div class="${cls}" data-id="${id}">${item.nome}</div>`;
+          }).join("")}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  app.innerHTML = html;
+
+  document.querySelectorAll("[data-voltar-home]").forEach(el => {
+    el.addEventListener("click", renderHome);
+  });
+
+  document.querySelectorAll(".item").forEach(el => {
+    el.addEventListener("click", () => clicarItem(parseInt(el.dataset.id, 10), el));
+  });
+}
+
+/* ============================================================
+   8. LÓGICA DO TESTE
+   ============================================================ */
+function clicarItem(id, el) {
+  const itemAtual = ITENS[estado.indiceAtual];
+  if (!itemAtual) return;
+
+  if (id === itemAtual.id) {
+    el.classList.remove("erro", "falha");
+    el.classList.add("acerto");
+    estado.resultados[id] = "verde";
+    estado.tentativas[id] = 0;
+    salvarEstado();
+    avancar();
+    return;
+  }
+
+  if (!estado.tentativas[id]) estado.tentativas[id] = 0;
+  estado.tentativas[id] += 1;
+
+  el.classList.remove("acerto", "falha");
+  el.classList.add("erro");
+  setTimeout(() => {
+    if (estado.resultados[id] !== "verde") el.classList.remove("erro");
+  }, 800);
+
+  if (estado.tentativas[itemAtual.id] >= 3) {
+    estado.resultados[itemAtual.id] = "vermelho";
+    salvarEstado();
+    avancar();
+  }
+}
+
+function avancar() {
+  estado.indiceAtual += 1;
+  salvarEstado();
+  renderItemAtual();
+  if (estado.indiceAtual >= ITENS.length) {
+    renderResultadoFinal();
+  } else {
+    renderHome();
+  }
+}
+
+function renderItemAtual() {
+  const item = ITENS[estado.indiceAtual];
+  if (!item) {
+    itemAtualEl.textContent = "🏁 Teste concluído!";
+    progressoEl.textContent = `${Object.keys(estado.resultados).length} / ${ITENS.length}`;
+    return;
+  }
+  itemAtualEl.textContent = item.nome;
+  progressoEl.textContent = `${estado.indiceAtual + 1} / ${ITENS.length}`;
+}
+
+/* ============================================================
+   9. RESULTADO FINAL
+   ============================================================ */
+function renderResultadoFinal() {
+  let html = `<div class="resultado-final"><h2>Resultado Final</h2><ul>`;
+  ITENS.forEach(item => {
+    const r = estado.resultados[item.id];
+    let badge = '<span class="badge">—</span>';
+    if (r === "verde") badge = '<span class="badge verde">Fácil</span>';
+    else if (r === "amarelo") badge = '<span class="badge amarelo">Médio</span>';
+    else if (r === "vermelho") badge = '<span class="badge vermelho">Não encontrado</span>';
+    html += `<li><span>${item.nome}</span> ${badge}</li>`;
+  });
+  html += `</ul><button class="btn-reiniciar" onclick="reiniciarTeste()">Reiniciar Teste</button></div>`;
+  app.innerHTML = html;
+  itemAtualEl.textContent = "🏁 Teste concluído!";
+}
+
+function reiniciarTeste() {
+  localStorage.removeItem(STORAGE_KEY);
+  estado = { indiceAtual: 0, resultados: {}, tentativas: {} };
+  renderItemAtual();
+  renderHome();
+}
+
+/* ============================================================
+   10. INIT
+   ============================================================ */
+function init() {
+  carregarEstado();
+  renderItemAtual();
+  renderHome();
+}
+init();
+</script>
+</body>
+</html>
