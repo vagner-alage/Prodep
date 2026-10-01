@@ -571,7 +571,7 @@
         </button>
         <div class="dropdown" id="dropdownServicos">
           <a data-grupo="Serviços" data-subgrupo="Ajuste da Jornada de Trabalho">Ajuste da Jornada de Trabalho</a>
-          <a data-grupo="Serviços" data-subgrupo="Orientações, Procedimentos e Requerimentos">Orientações, Procedimentos e Requerimentos</a>
+          <a data-grupo="Serviços" data-subgrupo="Procedimentos e Requerimentos">Procedimentos e Requerimentos</a>
           <a data-grupo="Serviços" data-subgrupo="Pagamentos e benefícios">Pagamentos e benefícios</a>
           <a data-grupo="Serviços" data-subgrupo="Prova de Vida">Prova de Vida</a>
           <a data-grupo="Serviços" data-subgrupo="Saúde, segurança e qualidade de vida">Saúde, segurança e qualidade de vida</a>
@@ -665,10 +665,10 @@ const ITENS = [
   { id: 34, nome: "Ajuste para Flexibilização da Jornada de Trabalho em outras IFES", path: "Serviços > Ajuste da Jornada de Trabalho > Referências" },
   { id: 32, nome: "Notícias (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Comunicados e atividades da CAJ" },
 
-  // Serviços > Orientações, Procedimentos e Requerimentos
-  { id: 45, nome: "Perguntas e Respostas", path: "Serviços > Orientações, Procedimentos e Requerimentos > Perguntas frequentes sobre direitos e benefícios" },
-  { id: 43, nome: "Formulários", path: "Serviços > Orientações, Procedimentos e Requerimentos > Procedimentos e requerimentos" },
-  { id: 46, nome: "Procedimentos Operacionais (PEN)", path: "Serviços > Orientações, Procedimentos e Requerimentos > Procedimentos e requerimentos" },
+  // Serviços > Procedimentos e Requerimentos
+  { id: 45, nome: "Perguntas e Respostas", path: "Serviços > Pagamentos e benefícios > Perguntas frequentes sobre direitos e benefícios" },
+  { id: 43, nome: "Formulários", path: "Serviços > Procedimentos e Requerimentos > Procedimentos e requerimentos" },
+  { id: 46, nome: "Procedimentos Operacionais (PEN)", path: "Serviços > Procedimentos e Requerimentos > Procedimentos e requerimentos" },
 
   // Serviços > Pagamentos e benefícios
   { id: 40, nome: "Contracheque - Sou.Gov (Acesso)", path: "Serviços > Pagamentos e benefícios > Contracheque" },
@@ -753,13 +753,11 @@ const ESTRUTURA = {
       "Referências": [34],
       "Comunicados e atividades da CAJ": [32]
     },
-    "Orientações, Procedimentos e Requerimentos": {
-      "Orientações e apoio ao servidor": {
-        "Perguntas frequentes sobre direitos e benefícios": [45]
-      },
+    "Procedimentos e Requerimentos": {
       "Procedimentos e requerimentos": [43, 46]
     },
     "Pagamentos e benefícios": {
+      "Perguntas frequentes sobre direitos e benefícios": [45],
       "Contracheque": [40],
       "Exercícios anteriores": [41],
       "Auxílios e benefícios": [24],
@@ -1336,11 +1334,11 @@ function renderFormularios(filtro = "") {
       <span class="sep">›</span>
       <span class="crumb" data-voltar-servicos>Serviços</span>
       <span class="sep">›</span>
-      <span class="crumb" data-voltar-orientacoes>Orientações, Procedimentos e Requerimentos</span>
+      <span class="crumb" data-voltar-orientacoes>Procedimentos e Requerimentos</span>
       <span class="sep">›</span>
       <span>Formulários</span>
     </div>
-    <button class="btn-voltar" data-voltar-orientacoes>← Voltar para Orientações, Procedimentos e Requerimentos</button>
+    <button class="btn-voltar" data-voltar-orientacoes>← Voltar para Procedimentos e Requerimentos</button>
     <div class="pagina-grupo">
       <h2 class="titulo">Formulários e Requerimentos</h2>
       <div class="form-busca">
@@ -1381,7 +1379,7 @@ function renderFormularios(filtro = "") {
     el.addEventListener("click", () => renderGrupo("Serviços"));
   });
   document.querySelectorAll("[data-voltar-orientacoes]").forEach(el => {
-    el.addEventListener("click", () => renderGrupo("Serviços", "Orientações, Procedimentos e Requerimentos"));
+    el.addEventListener("click", () => renderGrupo("Serviços", "Procedimentos e Requerimentos"));
   });
 
   const input = document.getElementById("formBusca");
