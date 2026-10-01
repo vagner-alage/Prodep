@@ -23,13 +23,20 @@
     --vermelho: #c62828;
     --azul: #1565c0;
     --azul-claro: #e3f2fd;
+
+    --cor-bg-pagina: #eef2f7;
+    --cor-bg-pagina-2: #dfe7f0;
+    --cor-left-border-bg: #e8f0fb;
+    --cor-left-border-bg-hover: #d6e6fa;
   }
 
   * { box-sizing: border-box; font-family: 'Roboto', system-ui, -apple-system, Segoe UI, sans-serif; }
 
   body {
     margin: 0;
-    background: var(--cor-fundo-principal);
+    background:
+      linear-gradient(180deg, var(--cor-bg-pagina) 0%, var(--cor-bg-pagina-2) 100%);
+    background-attachment: fixed;
     color: var(--cor-texto);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -392,17 +399,169 @@
     font-size: 19.2px; color: var(--cor-secundaria);
     border-bottom: 1px solid #eee; padding-bottom: 6.4px; margin-bottom: 16px;
   }
-  .pagina-grupo .itens { display: flex; flex-wrap: wrap; gap: 9.6px; }
+
+  /* itens SEMPRE em coluna, um por linha */
+  .pagina-grupo .itens {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .item-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
 
   .item {
     background: #f9f9f9; border: 1px solid var(--cor-borda);
-    padding: 9.6px 19.2px; border-radius: 6px; cursor: pointer;
+    border-left: 5px solid var(--cor-secundaria);
+    padding: 9.6px 19.2px 9.6px 16px;
+    border-radius: 6px; cursor: pointer;
     transition: 0.2s; user-select: none; font-size: 15.2px;
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(
+      to right,
+      var(--cor-left-border-bg) 0,
+      var(--cor-left-border-bg) 6px,
+      #f9f9f9 6px,
+      #f9f9f9 100%
+    );
   }
-  .item:hover { background: var(--azul-claro); border-color: var(--azul); }
-  .item.acerto { background: var(--verde) !important; color: #fff !important; border-color: var(--verde) !important; }
-  .item.erro { background: var(--amarelo) !important; color: #222 !important; border-color: var(--amarelo) !important; }
-  .item.falha { background: var(--vermelho) !important; color: #fff !important; border-color: var(--vermelho) !important; }
+  .item .item-id {
+    font-family: 'Raleway', sans-serif; font-weight: 700;
+    font-size: 11px; color: var(--cor-secundaria);
+    background: #fff; border: 1px solid var(--cor-borda);
+    padding: 1px 7px; border-radius: 10px;
+    margin-right: 8px; white-space: nowrap;
+    display: inline-block; vertical-align: middle;
+  }
+  .item:hover {
+    background-image: linear-gradient(
+      to right,
+      var(--cor-left-border-bg-hover) 0,
+      var(--cor-left-border-bg-hover) 6px,
+      var(--azul-claro) 6px,
+      var(--azul-claro) 100%
+    );
+    border-color: var(--azul);
+    border-left-color: var(--azul);
+  }
+  .item.acerto {
+    background: var(--verde) !important;
+    background-image: none !important;
+    color: #fff !important;
+    border-color: var(--verde) !important;
+    border-left-color: var(--verde) !important;
+  }
+  .item.erro {
+    background: var(--amarelo) !important;
+    background-image: none !important;
+    color: #222 !important;
+    border-color: var(--amarelo) !important;
+    border-left-color: var(--amarelo) !important;
+  }
+  .item.falha {
+    background: var(--vermelho) !important;
+    background-image: none !important;
+    color: #fff !important;
+    border-color: var(--vermelho) !important;
+    border-left-color: var(--vermelho) !important;
+  }
+  .item.acerto .item-id,
+  .item.falha .item-id {
+    color: #fff; background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4);
+  }
+  .item.erro .item-id {
+    color: #222; background: rgba(255,255,255,0.6); border-color: rgba(0,0,0,0.2);
+  }
+
+  /* ===== classificação do tipo de link ===== */
+  .item-legenda {
+    font-size: 13px;
+    color: #555;
+    font-style: normal;
+    padding-left: 6px;
+    border-left: 3px solid #e0e0e0;
+    line-height: 1.45;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .item-legenda .tipo-badge {
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #fff;
+    white-space: nowrap;
+    background: var(--cor-secundaria);
+  }
+  .item-legenda .tipo-badge.pdf      { background: #c62828; }
+  .item-legenda .tipo-badge.asp      { background: #6a1b9a; }
+  .item-legenda .tipo-badge.jsf      { background: #00838f; }
+  .item-legenda .tipo-badge.sigrh    { background: #1565c0; }
+  .item-legenda .tipo-badge.sipac    { background: #2e7d32; }
+  .item-legenda .tipo-badge.ufba     { background: #0b3667; }
+  .item-legenda .tipo-badge.gov      { background: #455a64; }
+  .item-legenda .tipo-badge.portal   { background: #ef6c00; }
+  .item-legenda .tipo-badge.video    { background: #d32f2f; }
+  .item-legenda .tipo-badge.doc      { background: #5d4037; }
+  .item-legenda .tipo-badge.sem-url  { background: #9e9e9e; }
+
+  .item-acessar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    padding-left: 6px;
+    flex-wrap: wrap;
+  }
+  .item-acessar .url {
+    color: var(--azul);
+    word-break: break-all;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--azul);
+    font-family: 'Roboto Mono', Consolas, monospace;
+    font-size: 12px;
+  }
+  .item-acessar .url:hover {
+    color: var(--cor-primaria);
+    border-bottom-style: solid;
+  }
+  .item-acessar .url.sem-url {
+    color: #aaa;
+    border-bottom: none;
+    font-style: italic;
+    font-family: inherit;
+  }
+  .item-acessar .rotulo {
+    background: var(--cor-secundaria);
+    color: #fff;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.6px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.15s;
+  }
+  .item-acessar .rotulo:hover {
+    background: var(--cor-primaria);
+  }
+  .item-acessar .rotulo.desabilitado {
+    background: #bbb;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 
   .btn-voltar {
     background: var(--cor-fundo-caixa); border: 1px solid var(--cor-borda);
@@ -436,7 +595,6 @@
   }
   .btn-reiniciar:hover { background: #0d47a1; }
 
-  /* ===== FORMULÁRIOS ===== */
   .form-busca {
     display: flex; gap: 8px; margin-bottom: 24px;
   }
@@ -573,7 +731,7 @@
           <a data-grupo="Serviços" data-subgrupo="Ajuste da Jornada de Trabalho">Ajuste da Jornada de Trabalho</a>
           <a data-grupo="Serviços" data-subgrupo="Procedimentos e Requerimentos">Procedimentos e Requerimentos</a>
           <a data-grupo="Serviços" data-subgrupo="Pagamentos e benefícios">Pagamentos e benefícios</a>
-          <a data-grupo="Serviços" data-subgrupo="Prova de Vida">Prova de Vida</a>
+          <a data-grupo="Serviços" data-subgrupo="Cronograma da Folha de pagamento">Cronograma da Folha de pagamento</a>
           <a data-grupo="Serviços" data-subgrupo="Saúde, segurança e qualidade de vida">Saúde, segurança e qualidade de vida</a>
           <a data-grupo="Serviços" data-subgrupo="Vida Funcional">Vida Funcional</a>
         </div>
@@ -632,99 +790,87 @@
    1. DADOS DOS ITENS (teste de navegação)
    ============================================================ */
 const ITENS = [
-  // Institucional
-  { id: 1,  nome: "Sobre a PRODEP", path: "Institucional > Competências da PRODEP" },
-  { id: 2,  nome: "Organograma", path: "Institucional > Estrutura organizacional da PRODEP" },
-  { id: 4,  nome: "Portarias de Delegação de Competência", path: "Institucional > Atos e Delegações" },
-  { id: 3,  nome: "Agenda Pró-Reitor", path: "Institucional > Agendas" },
-  { id: 3000,  nome: "e-Agenda", path: "Institucional > Agendas" },
+  { id: 1,  nome: "Sobre a PRODEP", path: "Institucional > Competências da PRODEP", url: "https://prodep.ufba.br/node/19" },
+  { id: 2,  nome: "Organograma", path: "Institucional > Estrutura organizacional da PRODEP", url: "http://www.cgp.ufba.br/estrutura.asp" },
+  { id: 4,  nome: "Portarias de Delegação de Competência", path: "Institucional > Atos e Delegações", url: "https://prodep.ufba.br/node/1404" },
+  { id: 3,  nome: "Agenda Pró-Reitor", path: "Institucional > Agendas", url: "https://prodep.ufba.br/node/1231" },
+  { id: 3000,  nome: "e-Agenda", path: "Institucional > Agendas", url: "" },
 
-  // Concursos
-  { id: 9,  nome: "Concursos", path: "Concursos > Portal de Concursos da UFBA" },
-  { id: 73, nome: "Formulários - Quadro Permanente", path: "Concursos > Formulários" },
-  { id: 74, nome: "Formulários - Professor Substituto", path: "Concursos > Formulários" },
+  { id: 9,  nome: "Concursos", path: "Concursos > Portal de Concursos da UFBA", url: "https://concursos.ufba.br/" },
+  { id: 73, nome: "Formulários - Quadro Permanente", path: "Concursos > Formulários", url: "https://prodep.ufba.br/node/1369" },
+  { id: 74, nome: "Formulários - Professor Substituto", path: "Concursos > Formulários", url: "https://prodep.ufba.br/node/1370" },
 
-  // Sistemas
-  { id: 14, nome: "Numeração de Documentos", path: "Sistemas > Intranet" },
-  { id: 15, nome: "Exercícios Anteriores - NOF", path: "Sistemas > Intranet" },
-  { id: 16, nome: "Publicação do Boletim de Pessoal - SECEXEC", path: "Sistemas > Intranet" },
-  { id: 17, nome: "Sistema de Acompanhamento de Processos - CAJ", path: "Sistemas > Intranet" },
-  { id: 19, nome: "SisRD - NAD/NDI", path: "Sistemas > Intranet" },
-  { id: 20, nome: "Validação de Diploma - NUAV", path: "Sistemas > Intranet" },
-  { id: 22, nome: "Rotinas Administrativas - PRODEP", path: "Sistemas > Intranet" },
-  { id: 12, nome: "Sistemas Corporativos", path: "Sistemas > Catálogo de sistemas" },
+  { id: 14, nome: "Numeração de Documentos", path: "Sistemas > Intranet", url: "http://www.cgp.ufba.br/Login_Doc.asp" },
+  { id: 15, nome: "Exercícios Anteriores - NOF", path: "Sistemas > Intranet", url: "http://www.cgp.ufba.br/exercicios_anteriores.asp" },
+  { id: 16, nome: "Publicação do Boletim de Pessoal - SECEXEC", path: "Sistemas > Intranet", url: "http://www.cgp.ufba.br/login_adm.asp" },
+  { id: 17, nome: "Sistema de Acompanhamento de Processos - CAJ", path: "Sistemas > Intranet", url: "http://www.cgp.ufba.br/login_caj.asp" },
+  { id: 19, nome: "SisRD - NAD/NDI", path: "Sistemas > Intranet", url: "https://sisrd.prodep.ufba.br/sisrdInterno/publico/home.jsf" },
+  { id: 20, nome: "Validação de Diploma - NUAV", path: "Sistemas > Intranet", url: "http://www.cgp.ufba.br/login_adm_diploma_docente.asp" },
+  { id: 22, nome: "Rotinas Administrativas - PRODEP", path: "Sistemas > Intranet", url: "http://www.cgp.ufba.br/login_procedimento.asp" },
+  { id: 12, nome: "Sistemas Corporativos", path: "Sistemas > Catálogo de sistemas", url: "https://prodep.ufba.br/catalogodesistemas" },
 
-  // Serviços > Ajuste da Jornada de Trabalho
-  { id: 29, nome: "Informações (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Sobre a CAJ" },
-  { id: 28, nome: "Comissões Internas", path: "Serviços > Ajuste da Jornada de Trabalho > Sobre a CAJ" },
-  { id: 30, nome: "Procedimentos (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Solicitação e acompanhamento" },
-  { id: 35, nome: "Formulários para Solicitação do Ajuste", path: "Serviços > Ajuste da Jornada de Trabalho > Solicitação e acompanhamento" },
-  { id: 27, nome: "Acompanhamento de Processos", path: "Serviços > Ajuste da Jornada de Trabalho > Solicitação e acompanhamento" },
-  { id: 31, nome: "Normatizações (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Normas e orientações" },
-  { id: 33, nome: "Perguntas Frequentes (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Normas e orientações" },
-  { id: 34, nome: "Ajuste para Flexibilização da Jornada de Trabalho em outras IFES", path: "Serviços > Ajuste da Jornada de Trabalho > Referências" },
-  { id: 32, nome: "Notícias (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Comunicados e atividades da CAJ" },
+  { id: 29, nome: "Informações (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Sobre a CAJ", url: "http://www.prodep.ufba.br/caj" },
+  { id: 28, nome: "Comissões Internas", path: "Serviços > Ajuste da Jornada de Trabalho > Sobre a CAJ", url: "http://www.prodep.ufba.br/node/723" },
+  { id: 30, nome: "Procedimentos (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Solicitação e acompanhamento", url: "https://prodep.ufba.br/node/717" },
+  { id: 35, nome: "Formulários para Solicitação do Ajuste", path: "Serviços > Ajuste da Jornada de Trabalho > Solicitação e acompanhamento", url: "https://prodep.ufba.br/node/1111" },
+  { id: 27, nome: "Acompanhamento de Processos", path: "Serviços > Ajuste da Jornada de Trabalho > Solicitação e acompanhamento", url: "http://www.cgp.ufba.br/resultado_caj.asp" },
+  { id: 31, nome: "Normatizações (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Normas e orientações", url: "https://prodep.ufba.br/node/689" },
+  { id: 33, nome: "Perguntas Frequentes (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Normas e orientações", url: "https://prodep.ufba.br/node/728" },
+  { id: 34, nome: "Ajuste para Flexibilização da Jornada de Trabalho em outras IFES", path: "Serviços > Ajuste da Jornada de Trabalho > Referências", url: "https://prodep.ufba.br/node/794" },
+  { id: 32, nome: "Notícias (Jornada de trabalho)", path: "Serviços > Ajuste da Jornada de Trabalho > Comunicados e atividades da CAJ", url: "https://prodep.ufba.br/node/720" },
 
-  // Serviços > Procedimentos e Requerimentos
-  { id: 45, nome: "Perguntas e Respostas", path: "Serviços > Pagamentos e benefícios > Perguntas frequentes sobre direitos e benefícios" },
-  { id: 43, nome: "Formulários", path: "Serviços > Procedimentos e Requerimentos > Procedimentos e requerimentos" },
-  { id: 46, nome: "Procedimentos Operacionais (PEN)", path: "Serviços > Procedimentos e Requerimentos > Procedimentos e requerimentos" },
+  { id: 45, nome: "Perguntas e Respostas", path: "Serviços > Pagamentos e benefícios > Perguntas frequentes sobre direitos e benefícios", url: "https://prodep.ufba.br/faq-categoria" },
+  { id: 43, nome: "Formulários - Clique aqui para visualizar a nova proposta", path: "Serviços > Procedimentos e Requerimentos > Procedimentos e requerimentos", url: "https://prodep.ufba.br/formularios" },
+  { id: 46, nome: "Procedimentos Operacionais (PEN)", path: "Serviços > Procedimentos e Requerimentos > Procedimentos e requerimentos", url: "https://supad.ufba.br/manual-procedimentos?qt-manual_de_procedimentos=2#qt-manual_de_procedimentos" },
 
-  // Serviços > Pagamentos e benefícios
-  { id: 40, nome: "Contracheque - Sou.Gov (Acesso)", path: "Serviços > Pagamentos e benefícios > Contracheque" },
-  { id: 41, nome: "Declaração (para pagamento de) Exercícios Anteriores", path: "Serviços > Pagamentos e benefícios > Exercícios anteriores" },
-  { id: 24, nome: "Manual de Concessão de Auxílios e Benefícios", path: "Serviços > Pagamentos e benefícios > Auxílios e benefícios" },
-  { id: 52, nome: "Tutorial Quitação Aux. Saúde", path: "Serviços > Pagamentos e benefícios > Quitação Auxílio-saúde" },
-  { id: 78, nome: "Normatizações (GECC)", path: "Serviços > Pagamentos e benefícios > GECC- orientações e legislação" },
-  { id: 79, nome: "Tutoriais (GECC)", path: "Serviços > Pagamentos e benefícios > GECC- orientações e legislação" },
-  { id: 81, nome: "Cronograma da Folha — Mês atual/ano atual", path: "Serviços > Pagamentos e benefícios > Cronograma da Folha de pagamento" },
-  { id: 82, nome: "Cronograma da Folha — Mês anterior/ano atual", path: "Serviços > Pagamentos e benefícios > Cronograma da Folha de pagamento" },
+  { id: 40, nome: "Contracheque - Sou.Gov (Acesso)", path: "Serviços > Pagamentos e benefícios > Contracheque", url: "https://sougov.sigepe.gov.br/sougov/" },
+  { id: 41, nome: "Declaração (para pagamento de) Exercícios Anteriores", path: "Serviços > Pagamentos e benefícios > Exercícios anteriores", url: "http://www.cgp.ufba.br/declaraproc.asp" },
+  { id: 24, nome: "Manual de Concessão de Auxílios e Benefícios", path: "Serviços > Pagamentos e benefícios > Auxílios e benefícios", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Manual_Auxilios_Beneficios.pdf" },
+  { id: 52, nome: "Tutorial Quitação Aux. Saúde", path: "Serviços > Pagamentos e benefícios > Quitação Auxílio-saúde", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Tutorial%20de%20quita%C3%A7%C3%A3o%20do%20plano%20de%20sa%C3%BAde_UFBA.pdf" },
+  { id: 78, nome: "Normatizações (GECC)", path: "Serviços > Pagamentos e benefícios > GECC- orientações e legislação", url: "https://prodep.ufba.br/node/1370" },
+  { id: 79, nome: "Tutoriais (GECC)", path: "Serviços > Pagamentos e benefícios > GECC- orientações e legislação", url: "https://prodep.ufba.br/node/1128" },
 
-  // Serviços > Prova de Vida
-  { id: 65, nome: "Procedimentos para Prova de Vida – Aposentados e Pensionistas", path: "Serviços > Prova de Vida" },
+  { id: 81, nome: "Cronograma da Folha — Mês atual/ano atual", path: "Serviços > Cronograma da Folha de pagamento", url: "" },
+  { id: 82, nome: "Cronograma da Folha — Mês anterior/ano atual", path: "Serviços > Cronograma da Folha de pagamento", url: "" },
 
-  // Serviços > Saúde, segurança e qualidade de vida
-  { id: 48, nome: "Qualidade de Vida no Trabalho", path: "Serviços > Saúde, segurança e qualidade de vida" },
-  { id: 61, nome: "Laudo de Avaliação Ambiental", path: "Serviços > Saúde, segurança e qualidade de vida" },
+  { id: 48, nome: "Qualidade de Vida no Trabalho", path: "Serviços > Saúde, segurança e qualidade de vida", url: "https://qualivida.ufba.br/" },
+  { id: 61, nome: "Laudo de Avaliação Ambiental", path: "Serviços > Saúde, segurança e qualidade de vida", url: "https://prodep.ufba.br/node/1115" },
 
-  // Serviços > Vida Funcional
-  { id: 25, nome: "(Manual de) Provimento", path: "Serviços > Vida Funcional > Ingresso e posse" },
-  { id: 42, nome: "Documentos Para Posse", path: "Serviços > Vida Funcional > Ingresso e posse" },
-  { id: 60, nome: "Formulário Estágio Probatório - Técnico", path: "Serviços > Vida Funcional > Estágio probatório" },
-  { id: 37, nome: "Capacitação", path: "Serviços > Vida Funcional > Capacitação e Progressão" },
-  { id: 66, nome: "Progressão Funcional e Outros", path: "Serviços > Vida Funcional > Capacitação e Progressão" },
-  { id: 23, nome: "Aposentadoria", path: "Serviços > Vida Funcional > Aposentadoria" },
+  { id: 25, nome: "(Manual de) Provimento", path: "Serviços > Vida Funcional > Ingresso e posse", url: "https://www.gov.br/servidor/acl_users/credentials_cookie_auth/require_login?came_from=https%3A//www.gov.br/servidor/pt-br/arquivos/manual-de-provimento.pdf" },
+  { id: 42, nome: "Documentos Para Posse", path: "Serviços > Vida Funcional > Ingresso e posse", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/DOCUMENTOS%20EXIGIDOS%20PARA%20A%20POSSE.pdf" },
+  { id: 60, nome: "Formulário Estágio Probatório - Técnico", path: "Serviços > Vida Funcional > Estágio probatório", url: "" },
+  { id: 37, nome: "Capacitação", path: "Serviços > Vida Funcional > Capacitação e Progressão", url: "https://capacitar.ufba.br/" },
+  { id: 66, nome: "Progressão Funcional e Outros", path: "Serviços > Vida Funcional > Capacitação e Progressão", url: "https://prodep.ufba.br/node/1123" },
+  { id: 23, nome: "Aposentadoria", path: "Serviços > Vida Funcional > Aposentadoria", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Manual_Aposentadoria.pdf" },
+  { id: 65, nome: "Procedimentos para Prova de Vida – Aposentados e Pensionistas", path: "Serviços > Vida Funcional > Prova de Vida", url: "https://prodep.ufba.br/node/1203" },
 
-  // Acesso à informação
-  { id: 5,  nome: "Relatório de Gestão - Exercício 2025", path: "Acesso à informação > Relatórios de gestão" },
-  { id: 6,  nome: "Relatório de Gestão - Exercício 2024", path: "Acesso à informação > Relatórios de gestão" },
-  { id: 7,  nome: "Relatório de Gestão - Exercício 2023", path: "Acesso à informação > Relatórios de gestão" },
-  { id: 8,  nome: "Relatório de Gestão - Exercício 2022", path: "Acesso à informação > Relatórios de gestão" },
-  { id: 36, nome: "Boletim de Pessoal", path: "Acesso à informação > Publicações" },
-  { id: 64, nome: "Ofícios Circulares", path: "Acesso à informação > Publicações" },
-  { id: 44, nome: "Histórico Funcional / Financeiro", path: "Acesso à informação > Informações funcionais e financeiras" },
-  { id: 55, nome: "Docentes MS - Vagas Desocupadas", path: "Acesso à informação > Quadro de pessoal" },
-  { id: 56, nome: "Docentes MS - Vagas Ocupadas", path: "Acesso à informação > Quadro de pessoal" },
-  { id: 57, nome: "Docentes EBTT - Vagas Desocupadas", path: "Acesso à informação > Quadro de pessoal" },
-  { id: 58, nome: "Docentes EBTT - Vagas Ocupadas", path: "Acesso à informação > Quadro de pessoal" },
-  { id: 67, nome: "Quadro de Referência - Docente", path: "Acesso à informação > Quadro de pessoal" },
-  { id: 68, nome: "Quadro de Referência - PCCTAE", path: "Acesso à informação > Quadro de pessoal" },
-  { id: 69, nome: "Quantitativo de Cargos", path: "Acesso à informação > Quadro de pessoal" },
-  { id: 63, nome: "Ocupantes de CD, FG e FCC", path: "Acesso à informação > Servidores e funções" },
-  { id: 70, nome: "Relação dos Servidores", path: "Acesso à informação > Servidores e funções" },
-  { id: 75, nome: "Servidores Cedidos", path: "Acesso à informação > Servidores e funções" },
-  { id: 59, nome: "Docentes em DE cedidos", path: "Acesso à informação > Servidores e funções" },
-  { id: 71, nome: "Remuneração dos Servidores", path: "Acesso à informação > Informações funcionais e financeiras" },
-  { id: 50, nome: "Tabelas de Remuneração", path: "Acesso à informação > Tabelas financeiras" },
-  { id: 51, nome: "Tabela do Auxílio Saúde", path: "Acesso à informação > Tabelas financeiras" },
-  { id: 77, nome: "Consultar Pagamento (GECC)", path: "Acesso à informação > Informações funcionais e financeiras" },
+  { id: 5,  nome: "Relatório de Gestão - Exercício 2025", path: "Acesso à informação > Relatórios de gestão", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relato%CC%81rio%20de%20Gesta%CC%83o_2025_versa%CC%83o%20interna.pdf" },
+  { id: 6,  nome: "Relatório de Gestão - Exercício 2024", path: "Acesso à informação > Relatórios de gestão", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2024_vers%C3%A3o%20interna.pdf" },
+  { id: 7,  nome: "Relatório de Gestão - Exercício 2023", path: "Acesso à informação > Relatórios de gestão", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2023_vers%C3%A3o%20interna.pdf" },
+  { id: 8,  nome: "Relatório de Gestão - Exercício 2022", path: "Acesso à informação > Relatórios de gestão", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/PRODEP_Relat%C3%B3rio%20de%20Gest%C3%A3o_2022.pdf" },
+  { id: 36, nome: "Boletim de Pessoal", path: "Acesso à informação > Publicações", url: "http://www.cgp.ufba.br/formBusca.asp" },
+  { id: 64, nome: "Ofícios Circulares", path: "Acesso à informação > Publicações", url: "https://prodep.ufba.br/node/43" },
+  { id: 44, nome: "Histórico Funcional / Financeiro", path: "Acesso à informação > Informações funcionais e financeiras", url: "https://sigrh.ufba.br/sigrh/public/home.jsf" },
+  { id: 55, nome: "Docentes MS - Vagas Desocupadas", path: "Acesso à informação > Quadro de pessoal", url: "https://prodep.ufba.br/node/1183" },
+  { id: 56, nome: "Docentes MS - Vagas Ocupadas", path: "Acesso à informação > Quadro de pessoal", url: "https://prodep.ufba.br/node/1184" },
+  { id: 57, nome: "Docentes EBTT - Vagas Desocupadas", path: "Acesso à informação > Quadro de pessoal", url: "https://prodep.ufba.br/node/1185" },
+  { id: 58, nome: "Docentes EBTT - Vagas Ocupadas", path: "Acesso à informação > Quadro de pessoal", url: "https://prodep.ufba.br/node/1186" },
+  { id: 67, nome: "Quadro de Referência - Docente", path: "Acesso à informação > Quadro de pessoal", url: "https://prodep.ufba.br/node/1306" },
+  { id: 68, nome: "Quadro de Referência - PCCTAE", path: "Acesso à informação > Quadro de pessoal", url: "https://prodep.ufba.br/node/1307" },
+  { id: 69, nome: "Quantitativo de Cargos", path: "Acesso à informação > Quadro de pessoal", url: "https://sigrh.ufba.br/sigrh/public/abas/quantitativo_cargos_UFBA.jsf" },
+  { id: 63, nome: "Ocupantes de CD, FG e FCC", path: "Acesso à informação > Servidores e funções", url: "https://sigrh.ufba.br/sigrh/public/form_busca_ocupantes_cd_fg_fcc_ufba.jsf" },
+  { id: 70, nome: "Relação dos Servidores", path: "Acesso à informação > Servidores e funções", url: "https://sigrh.ufba.br/sigrh/public/menu_consultas_servidores_ufba.jsf" },
+  { id: 75, nome: "Servidores Cedidos", path: "Acesso à informação > Servidores e funções", url: "https://sigrh.ufba.br/sigrh/public/menu_consultas_servidores_ufba.jsf" },
+  { id: 59, nome: "Docentes em DE cedidos", path: "Acesso à informação > Servidores e funções", url: "https://sigrh.ufba.br/sigrh/public/abas/form_docentes_DE_cedidos_UFBA.jsf" },
+  { id: 71, nome: "Remuneração dos Servidores", path: "Acesso à informação > Informações funcionais e financeiras", url: "https://portaldatransparencia.gov.br/servidores/consulta?orgaosServidorLotacao=OR26232&ordenarPor=nome&direcao=asc" },
+  { id: 50, nome: "Tabelas de Remuneração", path: "Acesso à informação > Tabelas financeiras", url: "https://prodep.ufba.br/node/1387" },
+  { id: 51, nome: "Tabela do Auxílio Saúde", path: "Acesso à informação > Tabelas financeiras", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Portaria%20n.%202.778-2026%20-%20MGI%20-%20Fixa%20valor%20mensal%20do%20per%20capita.pdf" },
+  { id: 77, nome: "Consultar Pagamento (GECC)", path: "Acesso à informação > Informações funcionais e financeiras", url: "https://sigrh.ufba.br/sigrh/public/abas/form_relatorio_adicionais_gratificacoes_ufba.jsf" },
 
-  // Contato
-  { id: 10, nome: "Contatos da PRODEP", path: "Contato > Contatos e atendimento" },
-  { id: 11, nome: "Fale Conosco", path: "Contato > Contatos e atendimento" },
+  { id: 10, nome: "Contatos da PRODEP", path: "Contato > Contatos e atendimento", url: "https://prodep.ufba.br/node/1108" },
+  { id: 11, nome: "Fale Conosco", path: "Contato > Contatos e atendimento", url: "https://prodep.ufba.br/contact" },
 
-  // Link de rodapé
-  { id: 13, nome: "Mapa do Site", path: "link de rodapé" }
+  { id: 13, nome: "Mapa do Site", path: "link de rodapé", url: "https://prodep.ufba.br/sitemap" }
 ];
 
 /* ============================================================
@@ -762,16 +908,16 @@ const ESTRUTURA = {
       "Exercícios anteriores": [41],
       "Auxílios e benefícios": [24],
       "Quitação Auxílio-saúde": [52],
-      "GECC- orientações e legislação": [78, 79],
-      "Cronograma da Folha de pagamento": [81, 82]
+      "GECC- orientações e legislação": [78, 79]
     },
-    "Prova de Vida": [65],
+    "Cronograma da Folha de pagamento": [81, 82],
     "Saúde, segurança e qualidade de vida": [48, 61],
     "Vida Funcional": {
       "Ingresso e posse": [25, 42],
       "Estágio probatório": [60],
       "Capacitação e Progressão": [37, 66],
-      "Aposentadoria": [23]
+      "Aposentadoria": [23],
+      "Prova de Vida": [65]
     }
   },
   "Acesso à informação": {
@@ -791,10 +937,9 @@ const ESTRUTURA = {
 };
 
 /* ============================================================
-   3. FORMULÁRIOS (links extraídos do HTML)
+   3. FORMULÁRIOS
    ============================================================ */
 const FORMULARIOS = [
-  // ===== AFASTAMENTOS =====
   { cat: "Afastamentos", nome: "Afastamento (Docente/Técnico-Administrativo) - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_afastamento_tec_docente_0.pdf" },
   { cat: "Afastamentos", nome: "Afastamento - Projeto de Estudos", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/projeto_de_estudos.pdf" },
   { cat: "Afastamentos", nome: "Afastamento - Relatório de Atividades/Estudos", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Relatorio%20de%20Estudos.pdf" },
@@ -802,8 +947,6 @@ const FORMULARIOS = [
   { cat: "Afastamentos", nome: "Afastamento para Exercício de Mandato Eletivo - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_afastamento_exerc%C3%ADcio_mandato_eletivo.pdf" },
   { cat: "Afastamentos", nome: "Afastamento para Participar de Curso de Formação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_afastamento%20curso%20de%20forma%C3%A7%C3%A3o.pdf" },
   { cat: "Afastamentos", nome: "Afastamento para servir em Organismo Internacional - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_para%20servir%20em%20organismo%20internacional.pdf" },
-
-  // ===== APOSENTADORIA E PENSÃO =====
   { cat: "Aposentadoria e Pensão", nome: "Abono de Permanência - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Solicita%C3%A7%C3%A3o%20Abono%20de%20Perman%C3%AAncia.pdf" },
   { cat: "Aposentadoria e Pensão", nome: "Aposentadoria - Declaração de Acumulação de Funções, Cargos e Empregos Públicos", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Declaracao_acum_cargo_aposentadoria.pdf" },
   { cat: "Aposentadoria e Pensão", nome: "Aposentadoria - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Aposentadoria_Nova%20Vers%C3%A3o_0.pdf" },
@@ -815,55 +958,35 @@ const FORMULARIOS = [
   { cat: "Aposentadoria e Pensão", nome: "Pensão Civil - Procuração Particular", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Procura%C3%A7%C3%A3o%20Particular.pdf" },
   { cat: "Aposentadoria e Pensão", nome: "Pensão Civil - Requerimento", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Requerimento%20Pens%C3%A3o%20Civil_0.pdf" },
   { cat: "Aposentadoria e Pensão", nome: "Pensão Civil - Termo de Opção", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Op%C3%A7%C3%A3o%20Pens%C3%A3o%20Civil_0.pdf" },
-
-  // ===== AUXÍLIOS E BENEFÍCIOS =====
   { cat: "Auxílios e Benefícios", nome: "Auxílio Funeral - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Aux%C3%ADlio%20Funeral_solicita%C3%A7%C3%A3o.pdf" },
   { cat: "Auxílios e Benefícios", nome: "Auxílio Saúde Suplementar - Inclusão/Alteração/Restabelecimento/Exclusão", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Auxilio%20Saude%20Suplementar_novo.pdf" },
   { cat: "Auxílios e Benefícios", nome: "Auxílio Transporte Intermunicipal/Rodoviário - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_aux_transporte%20rodovi%C3%A1rio-intermunicipal_0.pdf" },
   { cat: "Auxílios e Benefícios", nome: "Auxílio Transporte Municipal - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_aux_transporte_0.pdf" },
   { cat: "Auxílios e Benefícios", nome: "Auxílio-Alimentação - Termo de Opção", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_op%C3%A7%C3%A3o%20Aux%20alimenta%C3%A7%C3%A3o.pdf" },
   { cat: "Auxílios e Benefícios", nome: "Indenização de Transporte", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Indeniza%C3%A7%C3%A3o%20de%20Transporte.pdf" },
-
-  // ===== CADASTRO E DADOS FUNCIONAIS =====
   { cat: "Cadastro e Dados Funcionais", nome: "Alteração de Dados Bancários - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Altera%C3%A7%C3%A3o%20de%20Dados%20Banc%C3%A1rios.pdf" },
   { cat: "Cadastro e Dados Funcionais", nome: "Dependentes - Inclusão/Exclusão", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/cadastro_dependentes.doc" },
   { cat: "Cadastro e Dados Funcionais", nome: "Ficha de Cadastro - Estagiários", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Ficha%20de%20Cadastro%20-%20ingressantes%20estagi%C3%A1rios_0.pdf" },
   { cat: "Cadastro e Dados Funcionais", nome: "Ficha de Cadastro - Ingressantes", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Ficha%20de%20Cadastro%20-%20ingressantes_0.pdf" },
   { cat: "Cadastro e Dados Funcionais", nome: "Nome Social - Solicitação de Cadastramento", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Nome%20Social.pdf" },
-
-  // ===== CONCURSOS =====
   { cat: "Concursos", nome: "Concurso para Professor do Ensino Básico, Técnico e Tecnológico – Solicitação de Abertura", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Solicita%C3%A7%C3%A3o%20Abertura%20Concurso%20Docente_EBTT_1.pdf" },
   { cat: "Concursos", nome: "Concurso para Professor do Magistério Superior realizado na UFBA – Aproveitamento de candidato/a", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Solicita%C3%A7%C3%A3o%20Aproveitamento%20Concurso%20Docente_MS_1.pdf" },
   { cat: "Concursos", nome: "Concurso para Professor do Magistério Superior – Solicitação de Abertura", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Solicita%C3%A7%C3%A3o%20Abertura%20Concurso%20Docente_MS_1.pdf" },
   { cat: "Concursos", nome: "Concurso para Professor Titular-Livre do Magistério Superior – Solicitação de Abertura", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Solicita%C3%A7%C3%A3o%20Abertura%20Concurso%20Docente_Titular-Livre_1.pdf" },
   { cat: "Concursos", nome: "Resultado de Concurso Público para cargos do Plano de Carreiras e Cargos de Magistério Federal - Modelo", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/1-Of%C3%ADcio%20Circular%20n.%20005-2026%20-%20PRODEP-UFBA%20-%20Informa%20Unidades%20padr%C3%A3o%20Resultado%20Final%20de%20Concurso%20-%20Anexo%20-%20Concursos.docx" },
   { cat: "Concursos", nome: "Resultado de Processos Seletivos Simplificados para Professor/a Substituto/a - Modelo", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/2-Of%C3%ADcio%20Circular%20n.%20005-2026%20-%20PRODEP-UFBA%20-%20Informa%20Unidades%20padr%C3%A3o%20Resultado%20Final%20de%20Concurso%20-%20Anexo%20PSS%20Professor%20Substituto.docx" },
-
-  // ===== ESTÁGIO PROBATÓRIO =====
   { cat: "Estágio Probatório", nome: "Estágio Probatório Servidores Técnico-Administrativos - Formulário de Avaliação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/FATORES%20ESTAGIO%20PROBATORIO_0.doc" },
-
-  // ===== EXERCÍCIOS ANTERIORES =====
   { cat: "Exercícios Anteriores", nome: "Exercícios Anteriores - Declaração de não ajuizamento de Ação Judicial", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Declara%C3%A7%C3%A3o_Exerc%C3%ADcios%20Anteriores_n%C3%A3o%20ajuizamento_0.pdf" },
   { cat: "Exercícios Anteriores", nome: "Exercícios Anteriores - Termo de renúncia ao valor excedente", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Termo_Exerc%C3%ADcios%20Anteriores_renuncia.pdf" },
-
-  // ===== FÉRIAS =====
   { cat: "Férias", nome: "Férias - Solicitação de Cancelamento", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/F%C3%A9rias%20-%20Cancelamento.pdf" },
   { cat: "Férias", nome: "Férias - Solicitação de Interrupção", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/F%C3%A9rias%20-%20Interrup%C3%A7%C3%A3o.pdf" },
-
-  // ===== GECC =====
   { cat: "GECC", nome: "GECC - Autorização e Termo de Responsabilidade", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Ficha%20de%20Autoriza%C3%A7%C3%A3o%20com%20termo.pdf" },
   { cat: "GECC", nome: "GECC - Relatório de Execução de Atividades para Pagamento", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Relat%C3%B3rio%20de%20Execu%C3%A7%C3%A3o%20de%20atividades%20-%20V1.pdf" },
-
-  // ===== HORÁRIO ESPECIAL =====
   { cat: "Horário Especial", nome: "Horário Especial para Servidor/a com Deficiência - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Hor%C3%A1rio%20Especial%20Servidor%20com%20Defici%C3%AAncia.pdf" },
   { cat: "Horário Especial", nome: "Horário Especial para Servidor/a com Dependente com Deficiência - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Hor%C3%A1rio%20Especial%20Servidor%20com%20familiar%20com%20Defici%C3%AAncia.pdf" },
   { cat: "Horário Especial", nome: "Horário Especial para Servidor/a Estudante - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Hor%C3%A1rio%20Especial%20Servidor%20Estudante.pdf" },
-
-  // ===== JORNADA E REGIME =====
   { cat: "Jornada e Regime", nome: "Alteração de Jornada de Trabalho/Servidor Técnico-Administrativo - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_altera%C3%A7%C3%A3o%20jornada%20t%C3%A9cnico.pdf" },
   { cat: "Jornada e Regime", nome: "Alteração de Regime de Trabalho/Servidor Docente - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_altera%C3%A7%C3%A3o%20regime%20trabalho%20docente.pdf" },
-
-  // ===== LICENÇAS =====
   { cat: "Licenças", nome: "Licença à Gestante - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_licen_gestante%20para%20pdf_V2.pdf" },
   { cat: "Licenças", nome: "Licença Adotante - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_licen_adotante_0.pdf" },
   { cat: "Licenças", nome: "Licença para Atividade Empresarial (Art. 15 da Lei n. 10.973/2004)", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_licen%C3%A7a%20para%20atividade%20empresarial%20%28Lei%20n.%2010.973-2004%29_0.pdf" },
@@ -873,8 +996,6 @@ const FORMULARIOS = [
   { cat: "Licenças", nome: "Licença por Motivo de Afastamento do Cônjuge (sem remuneração) - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_acompanhamento%20conjuge.pdf" },
   { cat: "Licenças", nome: "Licença Prêmio por Assiduidade - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Licen%C3%A7a%20Pr%C3%AAmio%20por%20Assiduidade_0.pdf" },
   { cat: "Licenças", nome: "Licença-Paternidade - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_licen_paternidade_0.pdf" },
-
-  // ===== POSSE E INGRESSO =====
   { cat: "Posse e Ingresso", nome: "Acumulação/Não Acumulação de Cargos, Funções e Empregos Públicos - Declaração para fins de Posse/Contratação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Declara%C3%A7%C3%A3o%20de%20Acumula%C3%A7%C3%A3o%20-%20N%C3%A3o%20Acumula%C3%A7%C3%A3o%20de%20Cargos%2C%20Empregos%20e%20Fun%C3%A7%C3%B5es%20com%20Aux%20Creche.pdf" },
   { cat: "Posse e Ingresso", nome: "Bens - Declaração Negativa", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/declaracao_negativa_bens.doc" },
   { cat: "Posse e Ingresso", nome: "Bens - Declaração Positiva", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/declaracao_positiva_bens.doc" },
@@ -883,24 +1004,16 @@ const FORMULARIOS = [
   { cat: "Posse e Ingresso", nome: "Termo de Compromisso e Responsabilidade para o Regime de Dedicação Exclusiva", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Termo%20de%20compromisso%20DE_0.pdf" },
   { cat: "Posse e Ingresso", nome: "Termo de Responsabilidade (Portaria Normativa nº 2/2011)", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/termo_responsabilidade_portaria_normativa.doc" },
   { cat: "Posse e Ingresso", nome: "Vacância / Exoneração de Cargo Efetivo - Requerimento", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/requerimento%20vacancia_exoneracao.pdf" },
-
-  // ===== PROGRESSÃO E CARREIRA =====
   { cat: "Progressão e Carreira", nome: "Ficha de Avaliação - Serv. Técnico-Administrativo - Progressão por Mérito Profissional", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/FichaDeAvaliacao%20em%20Branco.pdf" },
   { cat: "Progressão e Carreira", nome: "Progressão/Promoção Funcional – Solicitação de Revisão (Portaria n. 663/2024 – PRODEP)", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/requerimento%20revisao%20progress%C3%B5es.pdf" },
   { cat: "Progressão e Carreira", nome: "Requerimento de Retribuição por Titulação/Incentivo à Qualificação - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Requerimento%20RT-IQ_0.pdf" },
-
-  // ===== REMOÇÃO E SERVIÇOS =====
   { cat: "Remoção e Serviços", nome: "Edital de Remoção Técnico UFBA 2023 - ANEXO II", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Edital%20de%20Remo%C3%A7%C3%A3o%20T%C3%A9cnico%20UFBA%20%202023-ANEXO%20II.docx" },
   { cat: "Remoção e Serviços", nome: "Edital de Remoção Técnico UFBA 2023 - ANEXO III", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Edital%20de%20Remo%C3%A7%C3%A3o%20T%C3%A9cnico%20UFBA%20%202023-ANEXO%20III.docx" },
   { cat: "Remoção e Serviços", nome: "Edital de Remoção Técnico UFBA 2023 - ANEXO IV", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Edital%20de%20Remo%C3%A7%C3%A3o%20T%C3%A9cnico%20UFBA%20%202023-ANEXO%20IV.docx" },
   { cat: "Remoção e Serviços", nome: "Formulário para Solicitação de Servidor Técnico-Administrativo", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Formul%C3%A1rio%20para%20Reposi%C3%A7%C3%A3o%20de%20Servidor%20TA_revisado%20maio.2023.pdf" },
   { cat: "Remoção e Serviços", nome: "Fatura de Prestação de Serviços", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Fatura%20de%20Presta%C3%A7%C3%A3o%20de%20Servi%C3%A7os%202017.xls" },
   { cat: "Remoção e Serviços", nome: "Proposta de Prestação de Serviço", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/proposta_prestacao_de_servicos.doc" },
-
-  // ===== SAÚDE E SEGURANÇA =====
   { cat: "Saúde e Segurança", nome: "PPP - Perfil Profissiográfico Previdenciário (uso interno da PRODEP)", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/PPP_perfil_profissiografico_previdenciario.doc" },
-
-  // ===== OUTROS / DIVERSOS =====
   { cat: "Outros / Diversos", nome: "Adicional ou Gratificação Ocupacional - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/Solicita%C3%A7%C3%A3o%20de%20Adicional%20ou%20Gratifica%C3%A7%C3%A3o%20Ocupacional_0.doc" },
   { cat: "Outros / Diversos", nome: "ANEXO III EDITAL SELEÇAO ESTAGIARIO - FORMULÁRIO DE AUTODECLARAÇÃO", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/ANEXO%20III%20EDITAL%20SELE%C3%87AO%20ESTAGIARIO%20-%20FORMUL%C3%81RIO%20DE%20AUTODECLARA%C3%87%C3%83O.doc" },
   { cat: "Outros / Diversos", nome: "Ausência Justificada - Solicitação", url: "https://prodep.ufba.br/sites/prodep.ufba.br/files/solicitacao_ausencia%20justificada.docx" },
@@ -937,9 +1050,7 @@ const itemAtualEl = document.getElementById("itemAtual");
 const progressoEl = document.getElementById("progresso");
 
 /* ============================================================
-   6. MENU PRINCIPAL (DROPDOWNS GENÉRICOS)
-   - Qualquer botão com data-menu-pai ganha comportamento de
-     dropdown (Serviços, Acesso à informação, ...).
+   6. MENU PRINCIPAL
    ============================================================ */
 function initMenuPrincipal() {
   const botoesDropdown = document.querySelectorAll("header.site nav.menu button[data-menu-pai]");
@@ -951,7 +1062,6 @@ function initMenuPrincipal() {
 
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      // Fecha todos os outros dropdowns
       document.querySelectorAll("header.site nav.menu .dropdown.aberto").forEach(d => {
         if (d !== dropdown) d.classList.remove("aberto");
       });
@@ -974,13 +1084,11 @@ function initMenuPrincipal() {
     });
   });
 
-  // Fecha todos os dropdowns ao clicar fora
   document.addEventListener("click", () => {
     document.querySelectorAll("header.site nav.menu .dropdown.aberto").forEach(d => d.classList.remove("aberto"));
     document.querySelectorAll("header.site nav.menu button[data-menu-pai].ativo").forEach(b => b.classList.remove("ativo"));
   });
 
-  // Botões simples (sem dropdown)
   document.querySelectorAll("header.site nav.menu > .menu-item > button:not([data-menu-pai])").forEach(btn => {
     btn.addEventListener("click", () => {
       const g = btn.dataset.grupo;
@@ -1057,7 +1165,7 @@ function renderHome() {
           <div class="titulo">Comunicado 24/2026 — progressão</div>
           <div class="ler">Ler aviso →</div>
         </div>
-        <div class="aviso" data-grupo="Serviços" data-subgrupo="Prova de Vida">
+        <div class="aviso" data-grupo="Serviços" data-subgrupo="Vida Funcional">
           <div class="tema">Aposentadoria</div>
           <div class="titulo">Reconvocação para prova de vida</div>
           <div class="ler">Ler aviso →</div>
@@ -1102,7 +1210,7 @@ function renderHome() {
     </section>
 
     <section class="secao">
-      <h2>Categorias · Perfis</h2>
+      <h2>Categorias (OCULTÁVEL)</h2>
       <div class="categorias">
         <div class="chip">Ativo</div>
         <div class="chip">Aposentado</div>
@@ -1188,8 +1296,83 @@ function bindEventosHome() {
 }
 
 /* ============================================================
-   9. RENDER: PÁGINA DE GRUPO / SUBGRUPO
+   9. CLASSIFICADOR DE TIPO DE LINK
    ============================================================ */
+function classificarLink(url) {
+  if (!url) {
+    return { rotulo: "Sem URL", classe: "sem-url", detalhe: "Item sem endereço cadastrado" };
+  }
+
+  const u = url.toLowerCase();
+
+  if (u.endsWith(".pdf") || u.includes(".pdf?")) {
+    return { rotulo: "PDF", classe: "pdf", detalhe: "Documento PDF" };
+  }
+  if (/\.(docx?|xlsx?|pptx?)(\?|$)/.test(u)) {
+    return { rotulo: "Documento", classe: "doc", detalhe: "Arquivo para download" };
+  }
+  if (u.includes("youtube.com") || u.includes("youtu.be")) {
+    return { rotulo: "Vídeo", classe: "video", detalhe: "Vídeo no YouTube" };
+  }
+  if (u.includes("sigrh.ufba.br")) {
+    return { rotulo: "SIGRH", classe: "sigrh", detalhe: "Sistema SIGRH" };
+  }
+  if (u.includes("sipac.")) {
+    return { rotulo: "SIPAC", classe: "sipac", detalhe: "Sistema SIPAC" };
+  }
+  if (u.endsWith(".jsf") || u.includes(".jsf?") || u.includes(".jsf#")) {
+    return { rotulo: "Aplicação JSF", classe: "jsf", detalhe: "Aplicação JavaServer Faces" };
+  }
+  if (u.endsWith(".asp") || u.includes(".asp?") || u.includes("cgp.ufba.br")) {
+    return { rotulo: "Aplicação ASP", classe: "asp", detalhe: "Sistema legado (cgp.ufba.br)" };
+  }
+  if (u.includes("gov.br")) {
+    return { rotulo: "Gov.br", classe: "gov", detalhe: "Portal do Governo Federal" };
+  }
+  if (!u.includes("ufba.br")) {
+    return { rotulo: "Portal externo", classe: "portal", detalhe: "Site fora da UFBA" };
+  }
+  return { rotulo: "Página UFBA", classe: "ufba", detalhe: "Página institucional da UFBA" };
+}
+
+/* ============================================================
+   10. RENDER: PÁGINA DE GRUPO / SUBGRUPO
+   ============================================================ */
+function renderItemCard(id) {
+  const item = ITENS.find(i => i.id === id);
+  if (!item) return "";
+  const r = estado.resultados[id];
+  let cls = "item";
+  if (r === "verde") cls += " acerto";
+  if (r === "amarelo") cls += " erro";
+  if (r === "vermelho") cls += " falha";
+
+  const tipo = classificarLink(item.url);
+
+  const acessarHtml = item.url
+    ? `<div class="item-acessar">
+         <a class="url" href="${item.url}" target="_blank" rel="noopener">${item.url}</a>
+         <a class="rotulo" href="${item.url}" target="_blank" rel="noopener">[ACESSAR]</a>
+       </div>`
+    : `<div class="item-acessar">
+         <span class="url sem-url">(sem URL cadastrada)</span>
+         <span class="rotulo desabilitado">[ACESSAR]</span>
+       </div>`;
+
+  return `
+    <div class="item-wrap">
+      <div class="${cls}" id="item-${id}" data-id="${id}">
+        <span class="item-id">#${id}</span>${item.nome}
+      </div>
+      <div class="item-legenda">
+        <span class="tipo-badge ${tipo.classe}">${tipo.rotulo}</span>
+        <span>${tipo.detalhe}</span>
+      </div>
+      ${acessarHtml}
+    </div>
+  `;
+}
+
 function renderGrupo(grupo, subgrupoFoco = null) {
   const subgrupos = ESTRUTURA[grupo];
   if (!subgrupos) return;
@@ -1234,16 +1417,7 @@ function renderGrupo(grupo, subgrupoFoco = null) {
                 <div style="margin-left:8px; margin-top:8px;">
                   <h4 style="font-size:14px; color:#555; margin:0 0 6px;">${sub}</h4>
                   <div class="itens">
-                    ${nestedValor[sub].map(id => {
-                      const item = ITENS.find(i => i.id === id);
-                      if (!item) return "";
-                      const r = estado.resultados[id];
-                      let cls = "item";
-                      if (r === "verde") cls += " acerto";
-                      if (r === "amarelo") cls += " erro";
-                      if (r === "vermelho") cls += " falha";
-                      return `<div class="${cls}" data-id="${id}">${item.nome}</div>`;
-                    }).join("")}
+                    ${nestedValor[sub].map(id => renderItemCard(id)).join("")}
                   </div>
                 </div>
               `).join("")}
@@ -1256,16 +1430,7 @@ function renderGrupo(grupo, subgrupoFoco = null) {
           <div class="subgrupo" style="margin-left:16px;">
             <h3 style="font-size:16px;">${nested}</h3>
             <div class="itens">
-              ${nestedValor.map(id => {
-                const item = ITENS.find(i => i.id === id);
-                if (!item) return "";
-                const r = estado.resultados[id];
-                let cls = "item";
-                if (r === "verde") cls += " acerto";
-                if (r === "amarelo") cls += " erro";
-                if (r === "vermelho") cls += " falha";
-                return `<div class="${cls}" data-id="${id}">${item.nome}</div>`;
-              }).join("")}
+              ${nestedValor.map(id => renderItemCard(id)).join("")}
             </div>
           </div>
         `;
@@ -1279,16 +1444,7 @@ function renderGrupo(grupo, subgrupoFoco = null) {
       <div class="subgrupo">
         ${!subgrupoFoco ? `<h3>${sg}</h3>` : ""}
         <div class="itens">
-          ${ids.map(id => {
-            const item = ITENS.find(i => i.id === id);
-            if (!item) return "";
-            const r = estado.resultados[id];
-            let cls = "item";
-            if (r === "verde") cls += " acerto";
-            if (r === "amarelo") cls += " erro";
-            if (r === "vermelho") cls += " falha";
-            return `<div class="${cls}" data-id="${id}">${item.nome}</div>`;
-          }).join("")}
+          ${ids.map(id => renderItemCard(id)).join("")}
         </div>
       </div>
     `;
@@ -1307,7 +1463,7 @@ function renderGrupo(grupo, subgrupoFoco = null) {
 }
 
 /* ============================================================
-   10. RENDER: PÁGINA DE FORMULÁRIOS
+   11. RENDER: PÁGINA DE FORMULÁRIOS
    ============================================================ */
 function renderFormularios(filtro = "") {
   if (window._carrosselInterval) {
@@ -1406,7 +1562,7 @@ function renderFormularios(filtro = "") {
 }
 
 /* ============================================================
-   11. LÓGICA DO TESTE
+   12. LÓGICA DO TESTE
    ============================================================ */
 function clicarItem(id, el) {
   if (id === 43) {
@@ -1466,7 +1622,7 @@ function renderItemAtual() {
 }
 
 /* ============================================================
-   12. RESULTADO FINAL
+   13. RESULTADO FINAL
    ============================================================ */
 function renderResultadoFinal() {
   let html = `<div class="resultado-final"><h2>Resultado Final</h2><ul>`;
@@ -1491,7 +1647,7 @@ function reiniciarTeste() {
 }
 
 /* ============================================================
-   13. INIT
+   14. INIT
    ============================================================ */
 function init() {
   carregarEstado();
