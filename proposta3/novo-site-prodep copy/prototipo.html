@@ -278,7 +278,7 @@
     margin-bottom: 16px; position: relative; overflow: hidden;
   }
   .noticia-destaque .imagem::after {
-    content: "CARD FIXO, FORA DO CARROSSEL"; position: absolute; bottom: 8px; right: 12px;
+    content: "Imagem destaque"; position: absolute; bottom: 8px; right: 12px;
     font-size: 12px; color: #999; letter-spacing: 1px; text-transform: uppercase;
   }
   .noticia-destaque .titulo-destaque {
@@ -584,11 +584,11 @@
         </button>
         <div class="dropdown" id="dropdownAcesso">
           <a data-grupo="Acesso à informação" data-subgrupo="Relatórios de gestão">Relatórios de gestão</a>
-          <a data-grupo="Acesso à informação" data-subgrupo="Publicações">Publicações</a>
+          <a data-grupo="Acesso à informação" data-subgrupo="Boletim de pessoal e ofícios">Boletim de pessoal e ofícios</a>
           <a data-grupo="Acesso à informação" data-subgrupo="Informações funcionais e financeiras">Informações funcionais e financeiras</a>
           <a data-grupo="Acesso à informação" data-subgrupo="Quadro de pessoal">Quadro de pessoal</a>
           <a data-grupo="Acesso à informação" data-subgrupo="Servidores e funções">Servidores e funções</a>
-          <a data-grupo="Acesso à informação" data-subgrupo="Tabelas financeiras">Tabelas financeiras</a>
+          <a data-grupo="Acesso à informação" data-subgrupo="Remuneração e benefícios" style="display: none;">Remuneração e benefícios</a>
         </div>
       </div>
       <div class="menu-item">
@@ -637,7 +637,6 @@ const ITENS = [
   { id: 2,  nome: "Organograma", path: "Institucional > Estrutura organizacional da PRODEP" },
   { id: 4,  nome: "Portarias de Delegação de Competência", path: "Institucional > Atos e Delegações" },
   { id: 3,  nome: "Agenda Pró-Reitor", path: "Institucional > Agendas" },
-  { id: 3000,  nome: "e-Agenda", path: "Institucional > Agendas" },
 
   // Concursos
   { id: 9,  nome: "Concursos", path: "Concursos > Portal de Concursos da UFBA" },
@@ -700,8 +699,8 @@ const ITENS = [
   { id: 6,  nome: "Relatório de Gestão - Exercício 2024", path: "Acesso à informação > Relatórios de gestão" },
   { id: 7,  nome: "Relatório de Gestão - Exercício 2023", path: "Acesso à informação > Relatórios de gestão" },
   { id: 8,  nome: "Relatório de Gestão - Exercício 2022", path: "Acesso à informação > Relatórios de gestão" },
-  { id: 36, nome: "Boletim de Pessoal", path: "Acesso à informação > Publicações" },
-  { id: 64, nome: "Ofícios Circulares", path: "Acesso à informação > Publicações" },
+  { id: 36, nome: "Boletim de Pessoal", path: "Acesso à informação > Boletim de pessoal e ofícios" },
+  { id: 64, nome: "Ofícios Circulares", path: "Acesso à informação > Boletim de pessoal e ofícios" },
   { id: 44, nome: "Histórico Funcional / Financeiro", path: "Acesso à informação > Informações funcionais e financeiras" },
   { id: 55, nome: "Docentes MS - Vagas Desocupadas", path: "Acesso à informação > Quadro de pessoal" },
   { id: 56, nome: "Docentes MS - Vagas Ocupadas", path: "Acesso à informação > Quadro de pessoal" },
@@ -714,10 +713,10 @@ const ITENS = [
   { id: 70, nome: "Relação dos Servidores", path: "Acesso à informação > Servidores e funções" },
   { id: 75, nome: "Servidores Cedidos", path: "Acesso à informação > Servidores e funções" },
   { id: 59, nome: "Docentes em DE cedidos", path: "Acesso à informação > Servidores e funções" },
-  { id: 71, nome: "Remuneração dos Servidores", path: "Acesso à informação > Informações funcionais e financeiras" },
-  { id: 50, nome: "Tabelas de Remuneração", path: "Acesso à informação > Tabelas financeiras" },
-  { id: 51, nome: "Tabela do Auxílio Saúde", path: "Acesso à informação > Tabelas financeiras" },
-  { id: 77, nome: "Consultar Pagamento (GECC)", path: "Acesso à informação > Informações funcionais e financeiras" },
+  { id: 71, nome: "Remuneração dos Servidores", path: "Acesso à informação > Remuneração e benefícios" },
+  { id: 50, nome: "Tabelas de Remuneração", path: "Acesso à informação > Remuneração e benefícios" },
+  { id: 51, nome: "Tabela do Auxílio Saúde", path: "Acesso à informação > Remuneração e benefícios" },
+  { id: 77, nome: "Consultar Pagamento (GECC)", path: "Acesso à informação > Remuneração e benefícios" },
 
   // Contato
   { id: 10, nome: "Contatos da PRODEP", path: "Contato > Contatos e atendimento" },
@@ -735,7 +734,7 @@ const ESTRUTURA = {
     "Competências da PRODEP": [1],
     "Estrutura organizacional da PRODEP": [2],
     "Atos e Delegações": [4],
-    "Agendas": [3, 3000]
+    "Agendas": [3]
   },
   "Concursos": {
     "Portal de Concursos da UFBA": [9],
@@ -778,11 +777,11 @@ const ESTRUTURA = {
   },
   "Acesso à informação": {
     "Relatórios de gestão": [5, 6, 7, 8],
-    "Publicações": [36, 64],
-    "Informações funcionais e financeiras": [71, 77, 54, 44],
+    "Boletim de pessoal e ofícios": [36, 64],
+    "Informações funcionais e financeiras": [44],
     "Quadro de pessoal": [55, 56, 57, 58, 67, 68, 69],
     "Servidores e funções": [63, 70, 75, 59],
-    "Tabelas financeiras": [50, 51]
+    "Remuneração e benefícios": [71, 50, 51, 77, 54]
   },
   "Contato": {
     "Contatos e atendimento": [10, 11]
@@ -1008,7 +1007,7 @@ function renderHome() {
                 reflexões sobre o que significa ser Servidor Público numa Universidade Pública
                 Federal Brasileira.
               </div>
-              <button class="btn-slide">Veja mais</button>
+              <button class="btn-slide" data-grupo="Serviços" data-subgrupo="Orientações, Procedimentos e Requerimentos">Veja mais</button>
             </div>
             <div class="imagem">Slide 1 — Guia do Servidor</div>
           </div>
@@ -1022,7 +1021,7 @@ function renderHome() {
                 o Módulo de Férias do Sistema Integrado de Gestão de Recursos Humanos
                 (SIGRH) a partir de 01/07/2021.
               </div>
-              <button class="btn-slide">Veja mais</button>
+              <button class="btn-slide" data-grupo="Acesso à informação" data-subgrupo="Boletim de pessoal e ofícios">Veja mais</button>
             </div>
             <div class="imagem">Slide 2 — Ofício Circular</div>
           </div>
@@ -1034,7 +1033,7 @@ function renderHome() {
                 Confira a programação completa da Semana do Servidor 2024 e participe
                 das atividades preparadas especialmente para você.
               </div>
-              <button class="btn-slide">Veja mais</button>
+              <button class="btn-slide" data-grupo="Serviços" data-subgrupo="Ajuste da Jornada de Trabalho">Veja mais</button>
             </div>
             <div class="imagem">Slide 3 — Semana do Servidor</div>
           </div>
@@ -1052,7 +1051,7 @@ function renderHome() {
     </section>
 
     <section class="secao">
-      <h2>Avisos (OCULTÁVEL)</h2>
+      <h2>Avisos</h2>
       <div class="avisos">
         <div class="aviso" data-grupo="Serviços" data-subgrupo="Ajuste da Jornada de Trabalho">
           <div class="tema">Jornada</div>
@@ -1077,7 +1076,7 @@ function renderHome() {
       <div class="noticias-wrapper">
         <div class="noticia-destaque">
           <div class="imagem"></div>
-          <a class="titulo-destaque" data-grupo="Serviços" data-subgrupo="Ajuste da Jornada de Trabalho"></a>
+          <a class="titulo-destaque" data-grupo="Serviços" data-subgrupo="Ajuste da Jornada de Trabalho">card-fixo notícia destaque</a>
         </div>
 
         <div class="noticia-lista">
@@ -1091,7 +1090,7 @@ function renderHome() {
             <div class="noticia-titulo">COMUNICADO n. 14/2026 – NOVO VALOR DA ASSISTÊNCIA PRÉ-ESCOLAR</div>
           </div>
 
-          <div class="noticia-item" data-grupo="Acesso à informação" data-subgrupo="Tabelas financeiras">
+          <div class="noticia-item" data-grupo="Acesso à informação" data-subgrupo="Remuneração e benefícios">
             <div class="noticia-data">06/04<br>2026</div>
             <div class="noticia-titulo">COMUNICADO n. 13/2026 – NOVO VALOR DO AUXÍLIO SAÚDE SUPLEMENTAR</div>
           </div>
